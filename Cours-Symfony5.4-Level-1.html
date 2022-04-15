@@ -610,7 +610,10 @@ afin de l'utiliser dans les URLs (SEO).
      * @gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=120)
      */
-    private $slug;
+     private $slug;
+
+    ou en attribut :
+    #[Gedmo\Slug(fields: ['name'])]
 </code></pre>
 
 <p>On peut supprimer le setter de slug puisqu'il ne sera pas nécessaire.</p>
