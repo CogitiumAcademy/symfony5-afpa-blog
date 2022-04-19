@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +25,7 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/add', name: 'post_add')]
-    public function addPost(Request $request): Response
+    public function addPost(Request $request, ManagerRegistry $doctrine): Response
     {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
@@ -38,7 +39,8 @@ class PostController extends AbstractController
 
             //dd($post);
 
-            $em = $this->getDoctrine()->getManager();
+            //$em = $this->getDoctrine()->getManager();
+            $em = $doctrine->getManager();
             $em->persist($post);
             $em->flush();
             return $this->redirectToRoute('home');

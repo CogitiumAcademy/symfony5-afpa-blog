@@ -721,6 +721,8 @@ afin de l'utiliser dans les URLs (SEO).
 
 <p><pre>Il faut maintenant traiter les données en provenance du formulaire
 Pour cela il faut :
+- Injecter le manager de Doctrine
+    (use Doctrine\Persistence\ManagerRegistry;)
 - Hydrater l'instance avec les données du form récupérées de la requête
 - Tester la soumission du form (POST) et la validité des données du form
 - Récupérer l'entity Manager (ORM)
@@ -728,9 +730,13 @@ Pour cela il faut :
 - Valider la transaction (COMMIT)
 - Rediriger sur l'accueil de l'admin :</pre></p>
 <pre><code class="language-php">
+    public function addCategory(Request $request, ManagerRegistry $doctrine): Response
+
+    ...
+
     $form->handleRequest($request);
     if ($form->isSubmitted() && $form->isValid()) {
-        $em = $this->getDoctrine()->getManager();
+        $em = $doctrine->getManager();
         $em->persist($category);
         $em->flush();
         return $this->redirectToRoute('admin_home');
@@ -860,7 +866,7 @@ Pour cela il faut :
     if ($form->isSubmitted() && $form->isValid()) {
         $post->setUser($this->getUser());
         $post->setActive(false);
-        $em = $this->getDoctrine()->getManager();
+        $em = $doctrine->getManager();
         $em->persist($post);
         $em->flush();
         return $this->redirectToRoute('home');
