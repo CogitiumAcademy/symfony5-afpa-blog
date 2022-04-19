@@ -24,7 +24,7 @@
 <hr>
 <h1>Cours Symfony 5 level 1</h1>
 <h2>par Philippe Giraud pour COGITIUM Academy</h2>
-<h2>Version du 08 Avril 2022</h2>
+<h2>Version du 19 Avril 2022</h2>
 <h2>Version de Symfony utilisée : 5.4</h2>
 <h2><a href="mailto:academy@cogitium.com">academy@cogitium.com</a></h2>
 <hr>
@@ -856,6 +856,7 @@ Pour cela il faut :
 - Mettre l'indicateur Active à false (pourrait être initialisé dans l'entité)
 - Puis faire comme Category pour traiter la persistance</pre></p>
 <pre><code class="language-php">
+    $form->handleRequest($request);
     if ($form->isSubmitted() && $form->isValid()) {
         $post->setUser($this->getUser());
         $post->setActive(false);
@@ -880,11 +881,8 @@ Pour cela il faut :
 <p>Télécharger CKEditor :</p>
 <pre><code class="language-bash">composer require friendsofsymfony/ckeditor-bundle</code></pre>
 
-<p>Puis l'installer :</p>
-<pre><code class="language-bash">php bin/console ckeditor:install</code></pre>
-
-<p>Puis installer les assets de CKEditor :</p>
-<pre><code class="language-bash">php bin/console assets:install public</code></pre>
+<p>Sans explication... :</p>
+<pre><code class="language-bash">composer update</code></pre>
 
 <p>Configurer l'éditeur dans le fichier config/packages/fos_ckeditor.yaml :</p>
 <pre><code class="language-yaml">

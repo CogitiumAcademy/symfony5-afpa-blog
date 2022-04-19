@@ -49,6 +49,9 @@
                             </li>
                         {% else %}
                             <li class="nav-item">
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('post_add') }}">Proposer un article</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_logout') }}">Logout</a>
                             </li>
                         {% endif %}
@@ -59,7 +62,7 @@
         </nav>
         <!-- Page Header-->
 
-        <header class="masthead" style="background-image: url('{{ asset('clean/assets/img/home-bg.jpg') }}')">
+        {% block imageh %}<header class="masthead" style="background-image: url('{{ asset('clean/assets/img/home-bg.jpg') }}')">{% endblock %}
         
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
