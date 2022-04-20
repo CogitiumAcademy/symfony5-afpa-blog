@@ -8,6 +8,8 @@ Pour lancer ce projet :
 - Dans une première console, faire le clone
 - Installer les bundles :
     > composer install
+- Suite à l'installation de CKEditor : 
+    > composer update
 - Vérifier le .env pour 
     - Les paramètres de connexion à la BD
     - Les paramètres SMTP :
