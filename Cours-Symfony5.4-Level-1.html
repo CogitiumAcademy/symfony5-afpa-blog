@@ -24,7 +24,7 @@
 <hr>
 <h1>Cours Symfony 5 level 1</h1>
 <h2>par Philippe Giraud pour COGITIUM Academy</h2>
-<h2>Version du 19 Avril 2022</h2>
+<h2>Version du 21 Avril 2022</h2>
 <h2>Version de Symfony utilisée : 5.4</h2>
 <h2><a href="mailto:academy@cogitium.com">academy@cogitium.com</a></h2>
 <hr>
@@ -54,9 +54,9 @@
 <hr>
 <h3 id="pre">PRESENTATION GENERALE</h3>
 <h4>Le design Pattern MVC</h4>
-<a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-contr%C3%B4leur" target="_blank">Présentation Wikipedia</a>
+<a href="http://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-contr%C3%B4leur" target="_blank">Présentation Wikipedia</a>
 <h4>Le framework Symfony</h4>
-<a href="https://fr.wikipedia.org/wiki/Symfony" target="_blank">Historique Wikipedia</a>
+<a href="http://fr.wikipedia.org/wiki/Symfony" target="_blank">Historique Wikipedia</a>
 <h4>Rappels de PHP OO et de MVC</h4>
 Manipulation en fonction des cours précédents
 <!--**********************************************************-->
@@ -64,7 +64,7 @@ Manipulation en fonction des cours précédents
 <!--**********************************************************-->
 <hr>
 <h3 id="ins">INSTALLATION DE L'ENVIRONNEMENT DE TRAVAIL</h3>
-<a href="https://symfony.com/doc/current/setup.html" target="_blank">https://symfony.com/doc/current/setup.html</a>
+<a href="http://symfony.com/doc/current/setup.html" target="_blank">http://symfony.com/doc/current/setup.html</a>
 <!--**********************************************************-->
 <p><pre>Installer les logiciels nécessaires :
 - CLI Symfony
@@ -88,7 +88,7 @@ Manipulation en fonction des cours précédents
 <hr>
 <h3 id="dem">DEMARRER UN PROJET SYMFONY</h3>
 <!--**********************************************************-->
-<p>Pour comprendre les versions de Symfony, <a href="https://symfony.com/releases" target="_blank">cliquez ici</a>.</p>
+<p>Pour comprendre les versions de Symfony, <a href="http://symfony.com/releases" target="_blank">cliquez ici</a>.</p>
 
 <p>Créer un nouveau projet complet avec le CLI:</p>
 
@@ -110,7 +110,7 @@ Manipulation en fonction des cours précédents
 <p>Se placer dans le dossier du projet, puis lancer le serveur interne de Symfony :</p>
 <pre><code class="language-bash">symfony server:start</code></pre>
 
-<p>Consulter le résultat sur l'adresse <a href="https://localhost:8000" target="_blank">https://localhost:8000</a>. 
+<p>Consulter le résultat sur l'adresse <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>. 
 Une page par défaut s'affiche et indique la version de Symfony</p>
 
 <p>Pour vérifier les détails d'un projet :</p>
@@ -128,7 +128,7 @@ Une page par défaut s'affiche et indique la version de Symfony</p>
 
 <p>Créer un dépot sur BitBucket ou GitHub sans Readme ni Gitignore</p>
 <p>Ajouter les remote dans le git du projet :</p>
-<pre><code class="language-bash">git remote add origin https://xxxxxxxxx@bitbucket.org/yyyyyy/zzzzzzzz.git</code></pre>
+<pre><code class="language-bash">git remote add origin http://xxxxxxxxx@bitbucket.org/yyyyyy/zzzzzzzz.git</code></pre>
 
 <p>Constater la présence de remote dans le dépôt :</p>
 <pre><code class="language-bash">git remote -v</code></pre>
@@ -152,7 +152,7 @@ Une page par défaut s'affiche et indique la version de Symfony</p>
 <pre><code class="language-php">#[Route('/test', name: 'app_test')]</code></pre>
 <pre><code class="language-php">@Route("/test", name="test")</code></pre>
 
-<p>Tester dans le navigateur  <a href="https://localhost:8000/test" target="_blank">https://localhost:8000/test</a>. 
+<p>Tester dans le navigateur  <a href="http://localhost:8000/test" target="_blank">http://localhost:8000/test</a>. 
 Constater le message : Hello TestController!</p>
 
 <p>(Si un problème évoque un fichier Json ou parle de Webpack, supprimer le bundle Webpack Encore dans composer.json puis faire un composer update)</p>
@@ -177,7 +177,7 @@ public function index(): Response
 <pre><code class="language-php">@Route("/test/{id}", name="test_id", methods={"GET"}, requirements={"id"="\d+"})</code></pre>
 
 <p>Pour la liste des méthodes HTTP : 
-<a href="https://developer.mozilla.org/fr/docs/Web/HTTP/M%C3%A9thode" target="_blank">https://developer.mozilla.org/fr/docs/Web/HTTP/M%C3%A9thode</a></p>
+<a href="http://developer.mozilla.org/fr/docs/Web/HTTP/M%C3%A9thode" target="_blank">http://developer.mozilla.org/fr/docs/Web/HTTP/M%C3%A9thode</a></p>
 
 <p>Et faire une vue identique à la première : test.html.twig</p>
 <p>Appeler cette vue depuis le controller</p>
@@ -260,7 +260,7 @@ public function test_id($id): Response
 <h3 id="int">INTEGRATION FRONTEND</h3>
 <!--**********************************************************-->
 <p>Partir d'un template et l'intégrer dans le layout</p>
-<p><a href="https://startbootstrap.com/theme/clean-blog" target="_blank">https://startbootstrap.com/theme/clean-blog</a></p> 
+<p><a href="http://startbootstrap.com/theme/clean-blog" target="_blank">http://startbootstrap.com/theme/clean-blog</a></p> 
 
 <p><pre>Faire une copie de base.html.twig en clean.html.twig 
 et intégrer le layout :
@@ -348,7 +348,7 @@ Pour cela, nous allons utiliser :
     ###< symfony/mailer ###
 
     ###> doctrine/doctrine-bundle ###
-    # Format described at https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
+    # Format described at http://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
     # IMPORTANT: You MUST configure your server version, either here or in config/packages/doctrine.yaml
     #
     # DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
@@ -470,7 +470,7 @@ public function getUsername(): string
 
 <p>Constater dans la BD.</p>
 
-<p>Tester l'inscription sur <a href="https://localhost:8000/register" target="_blank">https://localhost:8000/register</a></p>
+<p>Tester l'inscription sur <a href="http://localhost:8000/register" target="_blank">http://localhost:8000/register</a></p>
 
 <p><pre>A partir du moment où le register va envoyer un mail de confirmation, il faut deux outils :
 - Un serveur SMTP
@@ -479,11 +479,11 @@ public function getUsername(): string
 
 <p><pre>Il existe plusiers outils qui font cela, entre autre ces deux là :<br>
 - Maildev : un outils qui fonctionne avec NodeJS
-    Installation :  <a href="https://github.com/maildev/maildev" target="_blank">https://github.com/maildev/maildev</a>
+    Installation :  <a href="http://github.com/maildev/maildev" target="_blank">http://github.com/maildev/maildev</a>
     ATTENTION : pour tester avec Maildev, il faut le lancer avec l'otion --hide-extensions STARTTLS
 
 - MailHog : une application qui fonctionne sur beaucoup de systèmes
-     Installation :  <a href="https://github.com/mailhog/MailHog/blob/master/docs/RELEASES.md" target="_blank">https://github.com/mailhog/MailHog/blob/master/docs/RELEASES.md</a>
+     Installation :  <a href="http://github.com/mailhog/MailHog/blob/master/docs/RELEASES.md" target="_blank">http://github.com/mailhog/MailHog/blob/master/docs/RELEASES.md</a>
 </pre></p>
 
 <p><pre>Les mails sont en file d'attente dans le Messenger de Symfony. Il faut lancer un Worker dans une autre console afin de traiter la file :<br>
@@ -514,7 +514,7 @@ Tester /login
 
 <p>Faire la migration et l'appliquer.</p>
 
-<p>Tester la route <a href="https://localhost:8000/reset-password" target="_blank">https://localhost:8000/reset-password</a></p>
+<p>Tester la route <a href="http://localhost:8000/reset-password" target="_blank">http://localhost:8000/reset-password</a></p>
 
 <p>Pour y accèder, mettre un lien dans le form de login.</p>
 
@@ -543,7 +543,7 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
 </code></pre>
 
-<p>Pour voir les différents thèmes possibles, <a href="https://symfony.com/doc/current/form/form_themes.html" target="_blank">cliquez ici</a>.</p>
+<p>Pour voir les différents thèmes possibles, <a href="http://symfony.com/doc/current/form/form_themes.html" target="_blank">cliquez ici</a>.</p>
 
 <p>Dans les différentes pages (register, login, request), ajouter un peu de structure bootstrap et supprimer l'affichage du flash dans register.</p>
 
@@ -720,7 +720,7 @@ afin de l'utiliser dans les URLs (SEO).
     {% endblock %}
 </textarea></code></pre>
 
-<p>Tester l'affichage du formulaire sur <a href="https://localhost:8000/admin/category/add" target="_blank">https://localhost:8000/admin/category/add</a></p>
+<p>Tester l'affichage du formulaire sur <a href="http://localhost:8000/admin/category/add" target="_blank">http://localhost:8000/admin/category/add</a></p>
 
 <p><pre>Il faut maintenant traiter les données en provenance du formulaire
 Pour cela il faut :
@@ -878,14 +878,14 @@ Pour cela il faut :
 
 <p>Tester après avoir identifié un user.</p>
 
-<p>ATTENTION : pour les urls d'images, prendre uniquement des adresses HTTPS !!!!</p>
+<p>ATTENTION : pour les urls d'images, prendre uniquement des adresses http !!!!</p>
 
 <p>Vérifier dans la BD la création de l'article, le slug, la date de création, les clés étrangères.</p>
 
 <!--**********************************************************-->
 <hr>
 <h3 id="cke">UTILISATION D'UN EDITEUR WYSIWYG</h3>
-<a href="https://symfony.com/doc/current/bundles/FOSCKEditorBundle/installation.html" target="_blank">https://symfony.com/doc/current/bundles/FOSCKEditorBundle/installation.html</a>
+<a href="http://symfony.com/doc/current/bundles/FOSCKEditorBundle/installation.html" target="_blank">http://symfony.com/doc/current/bundles/FOSCKEditorBundle/installation.html</a>
 <!--**********************************************************-->
 <p>Télécharger CKEditor :</p>
 <pre><code class="language-bash">composer require friendsofsymfony/ckeditor-bundle</code></pre>
@@ -1125,22 +1125,22 @@ framework:
 <!--**********************************************************-->
 <hr>
 <h3 id="sql1">FAIRE DES REQUETES SQL GRACE A L'ENTITY MANAGER</h3>
-<a href="https://symfony.com/doc/current/doctrine.html#querying-for-objects-the-repository">https://symfony.com/doc/current/doctrine.html#querying-for-objects-the-repository</a>
+<a href="http://symfony.com/doc/current/doctrine.html#querying-for-objects-the-repository">http://symfony.com/doc/current/doctrine.html#querying-for-objects-the-repository</a>
 <!--**********************************************************-->
-<p>Pour l'instant nous avons utilisé une requête générique proposée par le repository.</p>
+<p>Pour l'instant nous avons utilisé une requête générique proposée par le repository, findAll().</p>
 
 <p>Mais il est possible de définir des requêtes spécifiques directement en SQL.</p>
 
-<p>faut utiliser cette technique si la requête est figée, donc si elle n'accepte pas de paramètres externes.</p>
+<p>Il faut utiliser cette technique si la requête est figée, donc si elle n'accepte pas de paramètres externes (formulaire, url, cookie...).</p>
 
 <p>Dans les autres cas, il faut passer par le Query Builder qui va gérer les paramètres et sécuriser les injections SQL.</p>
 
-<p><pre>Par exemple, nous pouvons faire une requête afin d'être plus précis sur les articles affichés dans la page d'accueil.
+<p><pre>Par exemple, nous pouvons faire une requête afin d'alimenter une sidebar dans la page d'accueil avec les articles les plus anciens.
 Nous allons demander :
 - juste les colonnes nécessaires
-- juste les posts avec le statut active à true
-- les article triés par ordre chronologique
-- seulement les 5 derniers articles (sauf nombre précisé)</pre></p>
+- filtrer les posts qui ont le statut active à true
+- trier les article par ordre chronologique
+- limiter à seulement les 5 derniers articles (sauf nombre précisé)</pre></p>
 
 <p>Ajouter une fonction dans le repository Post :</p>
 <pre><code class="language-php">
@@ -1163,8 +1163,6 @@ Nous allons demander :
 
 <p>Utiliser une route de test afin de constater le resultat de cette requête.</p>
 
-<p>Cette fonction pourrait servir à remplir une sidebar avec les plus anciens articles.</p>
-
 <p>Un exemple de sidebar :</p>
 <pre><code class="language-html"><textarea>
             <!-- Sidebar -->
@@ -1186,15 +1184,15 @@ Nous allons demander :
 <!--**********************************************************-->
 <hr>
 <h3 id="sql2">FAIRE DES REQUETES SQL GRACE AU QUERY BUILDER</h3>
-<a href="https://symfony.com/doc/current/doctrine.html#querying-with-the-query-builder">https://symfony.com/doc/current/doctrine.html#querying-with-the-query-builder</a>
-<a href="https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/query-builder.html">https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/query-builder.html</a>
+<a href="http://symfony.com/doc/current/doctrine.html#querying-with-the-query-builder">http://symfony.com/doc/current/doctrine.html#querying-with-the-query-builder</a>
+<a href="http://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/query-builder.html">http://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/query-builder.html</a>
 <!--**********************************************************-->
 <p>Le Query Builder est un mécanisme objet proposé par l'ORM Doctrine. C'est le mécanisme à privilégier lors des requêtes dynamiques car la sécurité est assurée par l'ORM.</p>
 
 <p><pre>Nous allons écrire une requête plus précise pour la page d'accueil pour :
 - ne garder que les articles avec active à true
 - trier les articles par ordre chronologique inverse
-- seulement les 5 derniers articles (sauf nombre précisé)</pre></p>
+- limiter à seulement les 5 derniers articles (sauf nombre précisé)</pre></p>
 
 <p>Dans le repository :</p>
 <pre><code class="language-php">
@@ -1227,8 +1225,8 @@ Nous allons demander :
 <h3 id="crud">MISE EN PLACE D'UN CRUD D'ADMINISTRATION</h3>
 <!--**********************************************************-->
 <p><pre>Pour l'instant, nous avons juste dans un controller Admin avec :
-- une page d'accueil vide : <a href="https://localhost:8000/admin/">https://localhost:8000/admin/</a>
-- la possibilité de créer des catégories : <a href="https://localhost:8000/category/add">https://localhost:8000/admin/category/add</a>
+- une page d'accueil vide : <a href="http://localhost:8000/admin/">http://localhost:8000/admin/</a>
+- la possibilité de créer des catégories : <a href="http://localhost:8000/category/add">http://localhost:8000/admin/category/add</a>
 </pre></p>
 
 <p>Allons plus loin en créant un module d'administration un peu plus complet.</p>
@@ -1274,7 +1272,7 @@ Nous allons demander :
 <p>Réorganiser le code afin de mettre la gestion des catégories dans un controller Category :</p>
 
 <p>Intégrer un template pour ce module d'administration :</p>
-<p><a href="https://startbootstrap.com/template/sb-admin">https://startbootstrap.com/template/sb-admin</a></p>
+<p><a href="http://startbootstrap.com/template/sb-admin">http://startbootstrap.com/template/sb-admin</a></p>
 
 <p>Comme pour le premier template, créer le layout, en le plaçant dans template/admin.</p>
 
