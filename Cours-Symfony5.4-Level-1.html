@@ -486,9 +486,12 @@ public function getUsername(): string
      Installation :  <a href="https://github.com/mailhog/MailHog/blob/master/docs/RELEASES.md" target="_blank">https://github.com/mailhog/MailHog/blob/master/docs/RELEASES.md</a>
 </pre></p>
 
-
+<p><pre>Les mails sont en file d'attente dans le Messenger de Symfony. Il faut lancer un Worker dans une autre console afin de traiter la file :<br>
+</pre></p>
+<pre><code class="language-bash">php bin/console messenger:consume async -vv</code></pre>
+    
 <p><pre>
-Constater le mail et le user dans le profiler
+Constater le mail dans la boite de réception et le user dans le profiler
 Confirmer en cliquant sur le lien dans le mail
 Constater la redirection vers home
 Constater dans PhpMyAdmin

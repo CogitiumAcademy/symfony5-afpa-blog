@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
@@ -24,13 +24,9 @@ class AdminController extends AbstractController
     #[Route('/category/add', name: 'category_add')]
     public function addCategory(Request $request, ManagerRegistry $doctrine): Response
     {
-        //dd($request);
-
         $category = new Category();
-        //dd($category);
 
         $form = $this->createForm(CategoryType::class, $category);
-        //dd($form->createView());
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

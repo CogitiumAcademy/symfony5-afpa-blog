@@ -16,11 +16,15 @@ class PostController extends AbstractController
     #[Route('/', name: 'home')]
     public function home(PostRepository $postRepository): Response
     {
-        $posts = $postRepository->findAll();
+        //$posts = $postRepository->findAll();
+        $posts = $postRepository->findLastPosts();
         //dd($posts);
+        $oldPosts = $postRepository->findOldPosts();
+        //dd($oldPosts);
 
         return $this->render('post/home.html.twig', [
             'posts' => $posts,
+            'oldPosts' => $oldPosts,
         ]);
     }
 
@@ -30,14 +34,10 @@ class PostController extends AbstractController
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
 
-        //dd($this->getUser());
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setUser($this->getUser());
             $post->setActive(false);
-
-            //dd($post);
 
             //$em = $this->getDoctrine()->getManager();
             $em = $doctrine->getManager();

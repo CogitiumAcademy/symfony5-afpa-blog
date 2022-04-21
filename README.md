@@ -24,9 +24,9 @@ Pour lancer ce projet :
     > php bin/console doctrine:database:create
 - Exécuter les migrations :
     > php bin/console doctrine:migrations:migrate
-- Dans une deuxième console, lancer le serveur web :
+- Dans une autre console, lancer le serveur web :
     > symfony server:start
-- Dans une troisième console, lancer le gestionaire de messages :
+- Dans une autre console, lancer le gestionaire de messages :
     > php bin/console messenger:consume async -vv
 
 Cela devrait fonctionner ;-)

@@ -9,7 +9,7 @@
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="col-md-8 col-lg-8 col-xl-7">
                     
                     {% for post in posts %}
                         <!-- Post preview-->
@@ -22,7 +22,7 @@
                             <p class="post-meta">
                                 Rédigé par {{ post.user.email }}
                                 - Publié {{ post.createdAt | ago }}
-                                - Classé dans {{ post.category.name }}
+                                - Classé dans <a href="{{ path('app_category', {slug: post.category.slug}) }}">{{ post.category.name }}</a>
                             </p>
                         </div>
                         <!-- Divider-->
@@ -32,6 +32,20 @@
 
                     <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                </div>
+                <!-- Sidebar -->
+                <div class="col-lg-4 col-md-4 mx-auto">
+                    <h2>Les anciens articles</h2>
+                    
+                    {% for oldPost in oldPosts %}
+                        <div class="post-preview">
+                            <a href="{{ path('post_view', {slug: oldPost.slug}) }}">
+                                <h2 class="post-subtitle">{{ oldPost.title }}</h2>
+                            </a>
+                            <p class="post-meta">{{ oldPost.createdAt | ago }}</p>
+                        </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
