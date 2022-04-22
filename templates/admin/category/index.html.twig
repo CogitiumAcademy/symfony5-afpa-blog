@@ -1,0 +1,63 @@
+{% extends 'sbadmin.html.twig' %}
+
+{% block title %}Liste des catégories{% endblock %}
+
+{% block body %}
+                <main>
+                    <div class="container-fluid px-4">
+
+                        <h1>Liste des catégories</h1>
+                        
+                        {{ dump(categories) }}
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Libellé</th>
+                                            <th>Slug</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Libellé</th>
+                                            <th>Slug</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        {% for category in categories %}
+
+                                            <tr>
+                                                <td>{{ category.id }}</td>
+                                                <td>{{ category.name }}</td>
+                                                <td>{{ category.slug }}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    
+                    </div>
+                </main>
+{% endblock %}
