@@ -1,0 +1,117 @@
+{% extends 'sbadmin.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+                <main>
+                    <div class="container-fluid px-4">
+
+                        <h1>
+                            Liste des articles
+                            <a href="{{ path('admin_post_add') }}" class="btn btn-primary">Ajouter</a>
+                        </h1>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Titre</th>
+                                            <th>Date</th>
+                                            <th>Actif</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Titre</th>
+                                            <th>Date</th>
+                                            <th>Actif</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        {% for post in posts %}
+
+                                            <tr>
+                                                <td>{{ post.id }}</td>
+                                                <td>{{ post.title }}</td>
+                                                <td>{{ post.createdAt | date }}</td>
+                                                <td>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" name="active" id="customSwitch{{ post.id }}" data-id="{{ post.id }}" {{ post.active ? 'checked' : null}}>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ path('admin_post_update', {id: post.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
+
+                                                    <a href="{{ path('admin_post_delete', {id: post.id}) }}" class="btn btn-warning btn-sm" onclick="return confirm('Suppression ?')">Supprimer</a>
+
+                                                </td>
+                                                <td>
+                                                    <a href="" class="btn btn-danger btn-sm modal-trigger" data-bs-toggle="modal" data-bs-target="#modalDelete" data-id="{{ post.id }}" data-title="{{ post.title }}">Supprimer</a>
+                                                </td>
+                                            </tr>
+
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    
+                    </div>
+                </main>
+
+    <!-- Modal -->  
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Supprimer un article</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a href="" class="btn btn-primary">Supprimer</a>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    window.onload = () => {
+        
+        let activate = document.querySelectorAll("[type=checkbox]")
+        for(let button of activate) {
+            button.addEventListener("click", function(){
+                let xmlhttp = new XMLHttpRequest
+                xmlhttp.open("get", `/admin/post/activate/${this.dataset.id}`)
+                xmlhttp.send() 
+            })
+        }
+        
+        let btdeletes = document.querySelectorAll(".modal-trigger")
+        for(let btdelete of btdeletes) {
+            btdelete.addEventListener("click", function(){
+                document.querySelector(".modal-footer a").href=`/admin/post/delete/${this.dataset.id}`
+                console.log(document.querySelector(".modal-footer a").href)
+                document.querySelector(".modal-body").innerText = `Etes-vous sûr de vouloir supprimer cet article : "${this.dataset.title}"`
+            })
+        }
+    }
+</script>
+{% endblock %}

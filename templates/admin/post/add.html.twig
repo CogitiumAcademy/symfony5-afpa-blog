@@ -1,0 +1,15 @@
+{% extends 'sbadmin.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+                <main>
+                    <div class="container-fluid px-4">
+
+                        <h1>{{ title }}</h1>
+                        
+                        {{ form(form) }}
+                    
+                    </div>
+                </main>
+{% endblock %}

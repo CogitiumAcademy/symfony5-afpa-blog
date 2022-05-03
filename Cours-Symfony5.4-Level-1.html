@@ -24,7 +24,7 @@
 <hr>
 <h1>Cours Symfony 5 level 1</h1>
 <h2>par Philippe Giraud pour COGITIUM Academy</h2>
-<h2>Version du 21 Avril 2022</h2>
+<h2>Version du 03 Mai 2022</h2>
 <h2>Version de Symfony utilisée : 5.4</h2>
 <h2><a href="mailto:academy@cogitium.com">academy@cogitium.com</a></h2>
 <hr>
@@ -1409,19 +1409,19 @@ Nous allons demander :
 - modifier la route avec un paramètre
 - récupérer la catégorie par le param Converter
 - supprimer le New
+- enlever le persist
 - appeler la même vue avec le même form</pre></p>
 <pre><code class="language-php">
     /**
      * @Route("/update/{id}", name="update")
      */
-    public function updateCategory(Category $category, Request $request): Response
+    public function updateCategory(Category $category, Request $request, ManagerRegistry $doctrine): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
+            $em = $doctrine->getManager();
             $em->flush();
             return $this->redirectToRoute('admin_category_index');
         }
@@ -1489,9 +1489,9 @@ Nous allons demander :
     /**
      * @Route("/delete/{id}", name="delete")
      */
-    public function delete(Post $post): Response
+    public function delete(Post $post, ManagerRegistry $doctrine): Response
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $doctrine->getManager();
         $em->remove($post);
         $em->flush();
         $this->addFlash('success', 'Article supprimé !');
