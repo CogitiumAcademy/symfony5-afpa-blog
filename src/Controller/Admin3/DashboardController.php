@@ -3,6 +3,7 @@
 namespace App\Controller\Admin3;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,6 +47,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Articles', 'fas fa-list', Post::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
