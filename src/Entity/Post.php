@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PostRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
+use ApiPlatform\Core\Annotation\ApiResource;
 
+#[ApiResource]
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {

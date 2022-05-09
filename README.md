@@ -29,4 +29,12 @@ Pour lancer ce projet :
 - Dans une autre console, lancer le gestionaire de messages :
     > php bin/console messenger:consume async -vv
 
-Cela devrait fonctionner ;-)
+=====================
+Ajout du 09/05/2022 :
+=====================
+Suite à un composer update et au passage en 5.4.8, une erreur s'affiche sur les pages qui ont besoin de data.
+Il faut changer la version de doctrine/persistence :
+    > composer req doctrine/persistence:^2.4
+
+Puis une erreur se produit sur le slug article car incompatibilité avec Gedmo/doctrine-extension qui doit passer en 3.6.0 :
+    > composer update
