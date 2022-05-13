@@ -13,11 +13,12 @@ Pour lancer ce projet :
 - Vérifier le .env pour 
     - Les paramètres de connexion à la BD
     - Les paramètres SMTP :
-        - Pour SMTP local styme Maildev ou Mailhog :
+        - Pour SMTP local style Maildev ou Mailhog :
             > MAILER_DSN=smtp://localhost:1025
             - Puis lancer le service dans une console séparée
             - Et un onglet sur la boite de réception
         - Pour SMTP cloud style Mailtrap :
+        (dans .env.local pour ne pas avoir les credentials sur GitHub...)
             > MAILER_DSN=smtp://login:password@smtp.mailtrap.io:2525?encryption=tls&auth_mode=login
             - Puis ouvrir un onglet sur la boite de réception du service
 - Créer la BD : 
@@ -26,8 +27,6 @@ Pour lancer ce projet :
     > php bin/console doctrine:migrations:migrate
 - Dans une autre console, lancer le serveur web :
     > symfony server:start
-- Dans une autre console, lancer le gestionaire de messages :
-    > php bin/console messenger:consume async -vv
 
 =====================
 Ajout du 09/05/2022 :
