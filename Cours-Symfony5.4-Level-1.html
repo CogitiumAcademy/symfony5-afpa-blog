@@ -24,7 +24,7 @@
 <hr>
 <h1>Cours Symfony 5 level 1</h1>
 <h2>par Philippe Giraud pour COGITIUM Academy</h2>
-<h2>Version du 03 Mai 2022</h2>
+<h2>Version du 13 Mai 2022</h2>
 <h2>Version de Symfony utilisée : 5.4</h2>
 <h2><a href="mailto:academy@cogitium.com">academy@cogitium.com</a></h2>
 <hr>
@@ -489,7 +489,16 @@ public function getUsername(): string
 <p><pre>Les mails sont en file d'attente dans le Messenger de Symfony. Il faut lancer un Worker dans une autre console afin de traiter la file :<br>
 </pre></p>
 <pre><code class="language-bash">php bin/console messenger:consume async -vv</code></pre>
-    
+
+<p>Pour une future mise en prod sur Heroku, je propose de désactiver l'envoi asynchrone des mails.</p>
+<p>Pour cela, commenter la ligne dans config/packages/messenger.yaml :</p>
+<pre><code class="language-yaml">
+    routing:
+    #Symfony\Component\Mailer\Messenger\SendEmailMessage: async
+    Symfony\Component\Notifier\Message\ChatMessage: async
+    Symfony\Component\Notifier\Message\SmsMessage: async
+</code></pre>
+
 <p><pre>
 Constater le mail dans la boite de réception et le user dans le profiler
 Confirmer en cliquant sur le lien dans le mail
