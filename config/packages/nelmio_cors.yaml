@@ -7,5 +7,4 @@ nelmio_cors:
         expose_headers: ['Link']
         max_age: 3600
     paths:
-        # '^/': null
-        ^(https)|(http)?://(localhost|127\.0\.0\.1)(:[0-9]+)|(cogiafpa.surge.sh)?$
+        '^/': null
