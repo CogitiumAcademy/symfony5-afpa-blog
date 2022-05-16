@@ -36,4 +36,4 @@ Il faut changer la version de doctrine/persistence :
     > composer req doctrine/persistence:^2.4
 
 Puis une erreur se produit sur le slug article car incompatibilité avec Gedmo/doctrine-extension qui doit passer en 3.6.0 :
-    > composer update
+    > composer update 
