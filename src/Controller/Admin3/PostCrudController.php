@@ -23,7 +23,7 @@ class PostCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            DateTimeField::new('created_at')->hideWhenCreating(),
+            //DateTimeField::new('created_at')->hideWhenCreating(),
             TextField::new('title'),
             AssociationField::new('category'),
             TextEditorField::new('content')->onlyOnForms(),
