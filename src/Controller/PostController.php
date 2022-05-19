@@ -68,7 +68,8 @@ class PostController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($comment);
             $em->flush();
-            return $this->redirectToRoute('post_view', array('slug' => $post->slug));
+            // dd($post->slug);
+            return $this->redirectToRoute('post_view', array('slug' => $post->getSlug()));
         }
 
         return $this->render('post/view.html.twig', [
