@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Entity\Comment;
+use App\Form\CommentType;
 use App\Repository\PostRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,10 +54,27 @@ class PostController extends AbstractController
     }
     
     #[Route('/post/{slug}', name: 'post_view')]
-    public function post(Post $post): Response
+    public function post(Post $post, Request $request, ManagerRegistry $doctrine): Response
     {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setUser($this->getUser());
+            $comment->setPost($post);
+            //dd($comment);
+
+            $em = $doctrine->getManager();
+            $em->persist($comment);
+            $em->flush();
+            //return $this->redirectToRoute('home');
+        }
+
         return $this->render('post/view.html.twig', [
-            'post' => $post
+            'post' => $post,
+            'form' => $form->createView(),
+            'comments' => $post->getComments(),
         ]);
     }
 

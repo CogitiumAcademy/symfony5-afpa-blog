@@ -19,6 +19,28 @@
                         - Publié {{ post.createdAt | ago }}
                         - Classé dans {{ post.category.name }}
                     </div>
+
+                    {% if(comments) %}
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <h2>Les commentaires</h2>
+                        <ul class="list-group">
+                            {% for comment in comments %}
+                                <li class="list-group-item">
+                                    <b>{{ comment.createdAt | ago }}, {{ comment.user.email }} a écrit : </b><br>
+                                    {{ comment.content }}
+                                </li>
+                            {% endfor %}
+                        </ul>                            
+                    </div>
+                    {% endif %}
+
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    {# {% if(app.user) %} #}
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <h2>Ajout d'un commentaire</h2>
+                            {{ form(form) }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </article>
