@@ -18,15 +18,27 @@
                         Rédigé par {{ post.user.email }}
                         - Publié {{ post.createdAt | ago }}
                         - Classé dans {{ post.category.name }}
+                        {% if is_granted("ROLE_USER") and post.user.id == app.user.id %}
+                            <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                        {% endif %}
                     </div>
 
-                    {% if(comments) %}
+                    {# {{ dump(post.comments) }} #}
+
+                    {% if(post.comments) %}
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <h2>Les commentaires</h2>
                         <ul class="list-group">
-                            {% for comment in comments %}
+                            {# {{ dump(app.user) }} #}
+                            {% for comment in post.comments %}
+                                {# {{ dump(comment) }} #}
                                 <li class="list-group-item">
-                                    <b>{{ comment.createdAt | ago }}, {{ comment.user.email }} a écrit : </b><br>
+                                    <b>{{ comment.createdAt | ago }}, {{ comment.user.email }} a écrit : </b>
+                                    {% if is_granted("ROLE_USER") and comment.user.id == app.user.id %}
+                                        <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                    {% endif %}
+                                    <br>
                                     {{ comment.content }}
                                 </li>
                             {% endfor %}
@@ -35,7 +47,6 @@
                     {% endif %}
 
                     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                    {# {% if(app.user) %} #}
                         <div class="col-md-10 col-lg-8 col-xl-7">
                             <h2>Ajout d'un commentaire</h2>
                             {{ form(form) }}

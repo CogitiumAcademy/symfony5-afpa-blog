@@ -56,26 +56,36 @@ class PostController extends AbstractController
     #[Route('/post/{slug}', name: 'post_view')]
     public function post(Post $post, Request $request, ManagerRegistry $doctrine): Response
     {
+        //dd($post->getComments());
+
+        // Traitement du formulaire pour ajouter un commentaire
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setUser($this->getUser());
-            $comment->setPost($post);
-            //dd($comment);
 
+            // Associer le user connecté
+            $comment->setUser($this->getUser());
+
+            // Associer le post concerné
+            $comment->setPost($post);
+
+            // Persister le commentaire
             $em = $doctrine->getManager();
             $em->persist($comment);
             $em->flush();
-            // dd($post->slug);
+
+            // Rediriger vers la même page, grâce au slug
             return $this->redirectToRoute('post_view', array('slug' => $post->getSlug()));
         }
 
         return $this->render('post/view.html.twig', [
+            // Passer l'article à la vue
             'post' => $post,
-            'form' => $form->createView(),
-            'comments' => $post->getComments(),
+
+            // Passer le formulaire à la vue
+            'form' => $form->createView()
         ]);
     }
 

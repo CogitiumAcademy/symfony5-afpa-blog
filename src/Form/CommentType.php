@@ -16,7 +16,9 @@ class CommentType extends AbstractType
         $builder
             //->add('createdAt')
             //->add('content')
-            ->add('content', TextareaType::class)
+            ->add('content', TextareaType::class, [
+                "label" => "Mon commentaire :",
+            ])
             //->add('post')
             //->add('user')
             ->add('Enregistrer', SubmitType::class)
