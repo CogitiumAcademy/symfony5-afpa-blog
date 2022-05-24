@@ -50,7 +50,6 @@ class PostCrudController extends AbstractCrudController
             TextField::new('title'),
             AssociationField::new('category'),
             TextEditorField::new('content')->onlyOnForms(),
-            TextField::new('image')->onlyOnForms(),
             BooleanField::new('active')->hideWhenCreating(),
         ];
     }
