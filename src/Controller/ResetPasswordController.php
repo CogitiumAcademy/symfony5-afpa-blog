@@ -159,7 +159,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_check_email');
         }
 
-        $email = (new TemplatedEmail())
+        $email = (new TemplatedEmail()) 
             ->from(new Address('phgiraud@cogitium.com', '"Moi même"'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
