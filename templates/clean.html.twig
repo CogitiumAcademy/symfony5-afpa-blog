@@ -14,12 +14,13 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('clean/css/styles.css') }}" rel="stylesheet" />
+        <link href="{{ asset('clean/css/perso.css') }}" rel="stylesheet" />
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{{ path('home') }}">Start Bootstrap</a>
+                <a class="navbar-brand" href="{{ path('home') }}">{{ app_name }}#BLOG</a>
 
                 {% for message in app.flashes('success') %}
                     <div class="alert alert-success" role="alert">{{ message }}</div>
@@ -36,7 +37,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('home') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('home') }}">Accueil</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_about') }}">About</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_contact') }}">Contact</a></li>
 
@@ -69,13 +70,15 @@
         </nav>
         <!-- Page Header-->
 
-        {% block imageh %}<header class="masthead" style="background-image: url('{{ asset('clean/assets/img/home-bg.jpg') }}')">{% endblock %}
+        {% block imageh %}
+
+        <header class="masthead" style="background-image: url('{{ asset('clean/assets/img/lubitel3.jpg') }}'); background-position: bottom;">{% endblock %}
         
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
-                            <h1>{% block titleh %}MyBlog{% endblock %}</h1>
+                            <h1>{% block titleh %}{{ app_name }}{% endblock %}</h1>
                             <span class="subheading">{% block subtitleh %}{% endblock %}</span>
                         </div>
                     </div>

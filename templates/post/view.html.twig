@@ -4,16 +4,14 @@
 
 {% block titleh %}{{ post.title }}{% endblock %}
 
-{% block imageh %}<header class="masthead" style="background-image: url('{{ post.image }}')">{% endblock %}
+{% block imageh %}<header class="masthead" style="background-image: url('{{ app_cdn }}{{ post.image }}'); background-position: center;">{% endblock %}
 
 {% block body %}
         <!-- Post Content-->
         <article class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7 post-content">
-                        {{ post.content | raw }}
-                    </div>
+                    
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         Rédigé par {{ post.user.email }}
                         - Publié {{ post.createdAt | ago }}
@@ -21,6 +19,11 @@
                         {% if is_granted("ROLE_USER") and post.user.id == app.user.id %}
                             <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
                         {% endif %}
+                    </div>
+
+                    <div class="col-md-10 col-lg-8 col-xl-7 post-content">
+                        <img class="pola" src="{{ app_cdn }}{{ post.image }}" alt="">
+                        {{ post.content | raw }}
                     </div>
 
                     {# {{ dump(post.comments) }} #}

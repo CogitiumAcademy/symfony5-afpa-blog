@@ -1,24 +1,28 @@
 {% extends 'clean.html.twig' %}
 
-{% block title %}Bienvenue sur mon blog{% endblock %}
+{% block title %}Blog de photographie argentique{% endblock %}
 
-{% block subtitleh %}Toute l'actualité du surf{% endblock %}
+{% block subtitleh %}Photographie à l'ancienne{% endblock %}
 
 
 {% block body %}
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-8 col-lg-8 col-xl-7">
+                
+                <!-- Main list -->
+                <div class="col-lg-8 col-md-8 col-xl-7">
                     
                     {% for post in posts %}
                         <!-- Post preview-->
                         <div class="post-preview post-content">
                             <a href="{{ path('post_view', {slug: post.slug}) }}">
                                 <h2 class="post-title">{{ post.title }}</h2>
-                                <img src="/uploads/posts/{{ post.image }}" alt="">
-                                <h3 class="post-subtitle">{{ post.content  | u.truncate(150, '...')  | raw }}</h3>
+                                <img class="pola" src="{{ app_cdn }}{{ post.image }}" alt="">
                             </a>
+
+                            <p style="color: white">{{ post.content  | u.truncate(200, '...</div>')  | raw }}</p>
+
                             <p class="post-meta">
                                 Rédigé par {{ post.user.email }}
                                 - Publié {{ post.createdAt | ago }}
@@ -31,22 +35,27 @@
                     {% endfor %}
 
                     <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                    <div class="d-flex justify-content-end mb-4">
+                        <a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a>
+                    </div>
+
                 </div>
+
                 <!-- Sidebar -->
-                <div class="col-lg-4 col-md-4 mx-auto">
-                    <h2>Les anciens articles</h2>
+                <div class="col-lg-3 col-md-4 mx-auto sidebar">
+                    <h3>Les archives</h3>
                     
                     {% for oldPost in oldPosts %}
                         <div class="post-preview">
                             <a href="{{ path('post_view', {slug: oldPost.slug}) }}">
-                                <h2 class="post-subtitle">{{ oldPost.title }}</h2>
+                                <h4 class="post-subtitle">{{ oldPost.title }}</h4>
                             </a>
                             <p class="post-meta">{{ oldPost.createdAt | ago }}</p>
                         </div>
                     {% endfor %}
 
                 </div>
+
             </div>
         </div>
 {% endblock %}

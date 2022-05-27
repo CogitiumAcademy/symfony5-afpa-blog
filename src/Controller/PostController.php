@@ -19,8 +19,9 @@ class PostController extends AbstractController
     #[Route('/', name: 'home')]
     public function home(PostRepository $postRepository): Response
     {
+        //dd($_ENV);
         //$posts = $postRepository->findAll();
-        $posts = $postRepository->findLastPosts();
+        $posts = $postRepository->findLastPosts(10);
         //dd($posts);
         $oldPosts = $postRepository->findOldPosts();
         //dd($oldPosts);

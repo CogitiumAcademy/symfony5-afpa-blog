@@ -43,10 +43,11 @@ class PostCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             DateTimeField::new('created_at')->hideWhenCreating(),
-            ImageField::new('image')
-                ->setBasePath('uploads/posts')
-                ->setUploadDir('public/uploads/posts')
-                ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]'),
+            TextField::new('image'),
+            // ImageField::new('image')
+            //     ->setBasePath('uploads/posts')
+            //     ->setUploadDir('public/uploads/posts')
+            //     ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]'),
             TextField::new('title'),
             AssociationField::new('category'),
             TextEditorField::new('content')->onlyOnForms(),

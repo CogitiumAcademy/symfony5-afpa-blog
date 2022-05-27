@@ -1,0 +1,30 @@
+body {
+    background-color: black;
+}
+
+.post-content img {
+    width: 80%;
+}
+
+.pola {
+    border: 2px solid black; 
+    padding: 50px;
+    background-color: white;
+    width: 100% !important;
+}
+
+.post-content img .pola-view {
+    width: 100%;
+}
+
+.post-content {
+    color: white;
+}
+
+.post-content a {
+    color: lightgrey;
+}
+
+.sidebar {
+    background-color: lightgrey;    
+}
