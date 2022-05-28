@@ -2,6 +2,16 @@ body {
     background-color: black;
 }
 
+.flash {
+    width: 50%;
+    margin: auto;
+    position: fixed;
+    top: 100px;
+    left: 25%;
+    z-index: 1000;
+    text-align: center;
+}
+
 .post-content img {
     width: 80%;
 }

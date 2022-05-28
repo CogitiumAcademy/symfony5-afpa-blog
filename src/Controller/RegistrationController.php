@@ -51,10 +51,11 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('phgiraud@cogitium.com', 'Moi même'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Confirmez votre inscription sur ARGENTIK#BLOG !')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
+            $this->addFlash('success', 'Mail envoyé, merci de vérifier !');
 
             return $userAuthenticator->authenticateUser(
                 $user,
@@ -83,7 +84,7 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Votre email a été vérifié !');
 
         return $this->redirectToRoute('home');
     }
