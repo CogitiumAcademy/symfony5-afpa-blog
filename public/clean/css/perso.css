@@ -28,3 +28,14 @@ body {
 .sidebar {
     background-color: lightgrey;    
 }
+
+.carousel {
+    margin-bottom: 30px;
+}
+
+.carousel img {
+    width: 300px; 
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+}

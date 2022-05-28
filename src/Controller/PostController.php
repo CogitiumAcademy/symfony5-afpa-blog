@@ -25,10 +25,13 @@ class PostController extends AbstractController
         //dd($posts);
         $oldPosts = $postRepository->findOldPosts();
         //dd($oldPosts);
+        $randomPhotos = $postRepository->findRandomPhotos();
+        //dd($randomPhotos);
 
         return $this->render('post/home.html.twig', [
             'posts' => $posts,
             'oldPosts' => $oldPosts,
+            'randomPhotos' => $randomPhotos,
         ]);
     }
 
