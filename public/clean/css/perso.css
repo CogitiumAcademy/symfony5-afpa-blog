@@ -1,5 +1,10 @@
-body {
-    background-color: black;
+:root {
+    --bs-body-color: white;
+    --bs-body-bg: black;
+  }
+
+a {
+    color: grey;
 }
 
 .flash {
