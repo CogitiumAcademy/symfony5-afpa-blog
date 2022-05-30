@@ -45,15 +45,15 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('home') }}">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_about') }}">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_contact') }}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_about') }}">A propos</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_contact') }}">Nous contacter</a></li>
 
                         {% if not is_granted("ROLE_USER") %}
                             <li class="nav-item">
                                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_register') }}">S'inscrire</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_login') }}">Login</a>
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_login') }}">Connexion</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
@@ -67,7 +67,7 @@
                             {% endif %}
 
                             <li class="nav-item">
-                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_logout') }}">Logout</a>
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_logout') }}">Déconnexion</a>
                             </li>
                         {% endif %}
 

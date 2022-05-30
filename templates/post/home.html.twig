@@ -7,30 +7,6 @@
 
 {% block body %}
 
-        <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-
-                {% set a = 0 %}
-                {% for photo in randomPhotos %}
-                    {# {{ dump(a) }} #}
-                    <div class="carousel-item {{ (a==0)?'active':'' }}">
-                        <img src="{{ app_cdn }}{{ photo.image }}" class="d-block" alt="...">
-                    </div>
-                    {% set a = a + 1 %}
-
-                {% endfor %}
-
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -68,6 +44,27 @@
 
                 <!-- Sidebar -->
                 <div class="col-lg-3 col-md-4 mx-auto sidebar">
+
+                    <h3>Random !</h3>
+
+                    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+
+                            {% set a = 0 %}
+                            {% for photo in randomPhotos %}
+                                {% set a = a + 1 %}
+                                <div class="carousel-item {{ (a==1)?'active':'' }}">
+                                    <img src="{{ app_cdn }}{{ photo.image }}" class="d-block" alt="...">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h6>Photo #{{ a }}</h6>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
                     <h3>Les archives</h3>
                     
                     {% for oldPost in oldPosts %}
