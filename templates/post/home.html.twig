@@ -22,7 +22,7 @@
                                 <img class="pola" src="{{ app_cdn }}{{ post.image }}" alt="">
                             </a>
 
-                            <p style="color: white">{{ post.content  | u.truncate(200, '...')  | raw }}</p>
+                            {{ post.content  | u.truncate(200, '...')  | raw }}
 
                             <p class="post-meta">
                                 Rédigé par <a href="">{{ post.user.displayname }}</a>
