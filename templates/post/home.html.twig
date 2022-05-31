@@ -25,7 +25,7 @@
                             <p style="color: white">{{ post.content  | u.truncate(200, '...</div>')  | raw }}</p>
 
                             <p class="post-meta">
-                                Rédigé par {{ post.user.email }}
+                                Rédigé par {{ post.user.displayname }}
                                 - Publié {{ post.createdAt | ago }}
                                 - Classé dans <a href="{{ path('app_category', {slug: post.category.slug}) }}">{{ post.category.name }}</a>
                             </p>

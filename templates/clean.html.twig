@@ -44,9 +44,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('home') }}">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_about') }}">A propos</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_contact') }}">Nous contacter</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('home') }}">Accueil <i class="fa-solid fa-house-chimney"></i></a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_about') }}">A propos <i class="fa-solid fa-address-card"></i></a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_contact') }}">Contacter <i class="fa-solid fa-comment-dots"></i></a></li>
 
                         {% if not is_granted("ROLE_USER") %}
                             <li class="nav-item">
@@ -57,17 +57,17 @@
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('post_add') }}">Proposer un article</a>
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('post_add') }}">Publier <i class="fa-solid fa-file-pen"></i></a>
                             </li>
 
                             {% if is_granted("ROLE_ADMIN") %}
                                 <li class="nav-item">
-                                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('admin3') }}" target="_blank">Admin</a>
+                                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('admin3') }}" target="_blank">Admin <i class="fa-solid fa-chart-line"></i></a>
                                 </li>
                             {% endif %}
 
                             <li class="nav-item">
-                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_logout') }}">Déconnexion</a>
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_logout') }}">[{{ app.user.displayname }}] <i class="fa-solid fa-right-from-bracket"></i></a>
                             </li>
                         {% endif %}
 

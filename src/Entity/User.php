@@ -39,6 +39,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
     private $comments;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private $displayname;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -207,6 +210,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $comment->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDisplayname(): ?string
+    {
+        return $this->displayname;
+    }
+
+    public function setDisplayname(string $displayname): self
+    {
+        $this->displayname = $displayname;
 
         return $this;
     }
