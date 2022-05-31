@@ -78,7 +78,7 @@ class PostRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            'SELECT p.image
+            'SELECT p.image, p.slug
             FROM App\Entity\Post p
             WHERE p.active = :status
             ORDER BY RAND()'

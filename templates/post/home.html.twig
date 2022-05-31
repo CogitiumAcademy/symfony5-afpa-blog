@@ -55,7 +55,9 @@
                                 {% for photo in randomPhotos %}
                                     {% set a = a + 1 %}
                                     <div class="carousel-item {{ (a==1)?'active':'' }}">
-                                        <img src="{{ app_cdn }}{{ photo.image }}" class="d-block" alt="...">
+                                        <a href="{{ path('post_view', {slug: photo.slug}) }}">
+                                            <img src="{{ app_cdn }}{{ photo.image }}" class="d-block" alt="...">
+                                        </a>
                                         <div class="carousel-caption d-none d-md-block">
                                             <h6>Photo #{{ a }}</h6>
                                         </div>
@@ -81,7 +83,7 @@
 
                     <!-- Liste des anciens articles -->
                     <div class="widget">
-                        <h3>Les archives</h3>
+                        <h3>5 x Archives</h3>
                         {% for oldPost in oldPosts %}
                             <div class="post-preview">
                                 <a href="{{ path('post_view', {slug: oldPost.slug}) }}">
