@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin3;
+namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Entity\User;
@@ -15,7 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
-    #[Route('/admin3', name: 'admin3')]
+    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
         //return parent::index();

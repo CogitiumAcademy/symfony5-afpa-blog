@@ -22,10 +22,10 @@
                                 <img class="pola" src="{{ app_cdn }}{{ post.image }}" alt="">
                             </a>
 
-                            <p style="color: white">{{ post.content  | u.truncate(200, '...</div>')  | raw }}</p>
+                            <p style="color: white">{{ post.content  | u.truncate(200, '...')  | raw }}</p>
 
                             <p class="post-meta">
-                                Rédigé par {{ post.user.displayname }}
+                                Rédigé par <a href="">{{ post.user.displayname }}</a>
                                 - Publié {{ post.createdAt | ago }}
                                 - Classé dans <a href="{{ path('app_category', {slug: post.category.slug}) }}">{{ post.category.name }}</a>
                             </p>
@@ -43,40 +43,56 @@
                 </div>
 
                 <!-- Sidebar -->
-                <div class="col-lg-3 col-md-4 mx-auto sidebar">
+                <aside class="col-lg-3 col-md-4 mx-auto">
 
-                    <h3>Random !</h3>
+                    <!-- Carousel de photos aléatoires -->
+                    <div class="widget">
+                        <h3>10 x Random</h3>
+                        <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                            <div class="carousel-inner">
 
-                    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-
-                            {% set a = 0 %}
-                            {% for photo in randomPhotos %}
-                                {% set a = a + 1 %}
-                                <div class="carousel-item {{ (a==1)?'active':'' }}">
-                                    <img src="{{ app_cdn }}{{ photo.image }}" class="d-block" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h6>Photo #{{ a }}</h6>
+                                {% set a = 0 %}
+                                {% for photo in randomPhotos %}
+                                    {% set a = a + 1 %}
+                                    <div class="carousel-item {{ (a==1)?'active':'' }}">
+                                        <img src="{{ app_cdn }}{{ photo.image }}" class="d-block" alt="...">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h6>Photo #{{ a }}</h6>
+                                        </div>
                                     </div>
-                                </div>
 
-                            {% endfor %}
+                                {% endfor %}
 
+                            </div>
                         </div>
                     </div>
 
-                    <h3>Les archives</h3>
-                    
-                    {% for oldPost in oldPosts %}
-                        <div class="post-preview">
-                            <a href="{{ path('post_view', {slug: oldPost.slug}) }}">
-                                <h4 class="post-subtitle">{{ oldPost.title }}</h4>
-                            </a>
-                            <p class="post-meta">{{ oldPost.createdAt | ago }}</p>
+                    <!-- Liste des catégories -->
+                    <div class="widget">
+                        <h3>Catégories</h3>
+                        <div class="list-group">
+                            {% for category in categories %}
+                                <a href="{{ path('app_category', {slug: category.slug}) }}" class="list-group-item list-group-item-action" aria-current="true">
+                                    {{ category.name }}
+                                </a>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
+                    </div>
 
-                </div>
+                    <!-- Liste des anciens articles -->
+                    <div class="widget">
+                        <h3>Les archives</h3>
+                        {% for oldPost in oldPosts %}
+                            <div class="post-preview">
+                                <a href="{{ path('post_view', {slug: oldPost.slug}) }}">
+                                    <h4 class="post-subtitle">{{ oldPost.title }}</h4>
+                                </a>
+                                <p class="post-meta">{{ oldPost.createdAt | ago }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </aside>
 
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin3;
+namespace App\Controller\Admin;
 
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;

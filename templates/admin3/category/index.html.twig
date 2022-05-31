@@ -1,16 +1,18 @@
 {% extends 'sbadmin.html.twig' %}
 
-{% block title %}Liste des articles{% endblock %}
+{% block title %}Liste des catégories{% endblock %}
 
 {% block body %}
                 <main>
                     <div class="container-fluid px-4">
 
                         <h1>
-                            Liste des articles
-                            <a href="{{ path('admin_post_add') }}" class="btn btn-primary">Ajouter</a>
+                            Liste des catégories
+                            <a href="{{ path('admin3_category_add') }}" class="btn btn-primary">Ajouter</a>
                         </h1>
                         
+                        {# {{ dump(categories) }} #}
+
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -21,9 +23,9 @@
                                     <thead>
                                         <tr>
                                             <th>N°</th>
-                                            <th>Titre</th>
-                                            <th>Date</th>
-                                            <th>Actif</th>
+                                            <th>Libellé</th>
+                                            <th>Slug</th>
+                                            <th>Parent</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -31,34 +33,30 @@
                                     <tfoot>
                                         <tr>
                                             <th>N°</th>
-                                            <th>Titre</th>
-                                            <th>Date</th>
-                                            <th>Actif</th>
+                                            <th>Libellé</th>
+                                            <th>Slug</th>
+                                            <th>Parent</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
 
-                                        {% for post in posts %}
+                                        {% for category in categories %}
 
                                             <tr>
-                                                <td>{{ post.id }}</td>
-                                                <td>{{ post.title }}</td>
-                                                <td>{{ post.createdAt | date }}</td>
+                                                <td>{{ category.id }}</td>
+                                                <td>{{ category.name }}</td>
+                                                <td>{{ category.slug }}</td>
+                                                <td>{{ category.parent }}</td>
                                                 <td>
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" name="active" id="customSwitch{{ post.id }}" data-id="{{ post.id }}" {{ post.active ? 'checked' : null}}>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ path('admin_post_update', {id: post.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
+                                                    <a href="{{ path('admin3_category_update', {id: category.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
 
-                                                    <a href="{{ path('admin_post_delete', {id: post.id}) }}" class="btn btn-warning btn-sm" onclick="return confirm('Suppression ?')">Supprimer</a>
+                                                    <a href="{{ path('admin3_category_delete', {id: category.id}) }}" class="btn btn-warning btn-sm" onclick="return confirm('Suppression ?')">Supprimer</a>
 
                                                 </td>
                                                 <td>
-                                                    <a href="" class="btn btn-danger btn-sm modal-trigger" data-bs-toggle="modal" data-bs-target="#modalDelete" data-id="{{ post.id }}" data-title="{{ post.title }}">Supprimer</a>
+                                                    <a href="" class="btn btn-danger btn-sm modal-trigger" data-bs-toggle="modal" data-bs-target="#modalDelete" data-id="{{ category.id }}" data-title="{{ category.name }}">Supprimer</a>
                                                 </td>
                                             </tr>
 
@@ -78,7 +76,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Supprimer un article</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Supprimer une catégorie</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -94,22 +92,12 @@
 
 <script>
     window.onload = () => {
-        
-        let activate = document.querySelectorAll("[type=checkbox]")
-        for(let button of activate) {
-            button.addEventListener("click", function(){
-                let xmlhttp = new XMLHttpRequest
-                xmlhttp.open("get", `/admin/post/activate/${this.dataset.id}`)
-                xmlhttp.send() 
-            })
-        }
-        
         let btdeletes = document.querySelectorAll(".modal-trigger")
         for(let btdelete of btdeletes) {
             btdelete.addEventListener("click", function(){
-                document.querySelector(".modal-footer a").href=`/admin/post/delete/${this.dataset.id}`
+                document.querySelector(".modal-footer a").href=`/admin3/category/delete/${this.dataset.id}`
                 console.log(document.querySelector(".modal-footer a").href)
-                document.querySelector(".modal-body").innerText = `Etes-vous sûr de vouloir supprimer cet article : "${this.dataset.title}"`
+                document.querySelector(".modal-body").innerText = `Etes-vous sûr de vouloir supprimer la catégorie "${this.dataset.title}"`
             })
         }
     }

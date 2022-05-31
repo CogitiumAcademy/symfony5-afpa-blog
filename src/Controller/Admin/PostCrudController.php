@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller\Admin3;
+namespace App\Controller\Admin;
 
 use App\Entity\Post;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -33,6 +34,7 @@ class PostCrudController extends AbstractCrudController
     {
         return $crud
             ->setDefaultSort(['createdAt' => 'DESC'])
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
             //->renderContentMaximized()
             //->renderSidebarMinimized()
         ;
@@ -50,7 +52,7 @@ class PostCrudController extends AbstractCrudController
             //     ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]'),
             TextField::new('title'),
             AssociationField::new('category'),
-            TextEditorField::new('content')->onlyOnForms(),
+            TextEditorField::new('content')->onlyOnForms()->setFormType(CKEditorType::class),
             BooleanField::new('active')->hideWhenCreating(),
         ];
     }

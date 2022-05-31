@@ -31,9 +31,7 @@ class Post
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    /**
-     * @Gedmo\Timestampable(on="create")
-     */
+    #[Gedmo\Timestampable(on:"create")]
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 
@@ -121,12 +119,14 @@ class Post
         return $this->createdAt;
     }
 
+    /*
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
+    */
 
     public function getActive(): ?bool
     {

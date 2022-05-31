@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin3;
 
 use App\Entity\Post;
 use App\Form\PostType;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/admin/post', name: 'admin_post_')]
+#[Route('/admin3/post', name: 'admin3_post_')]
 class PostController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -19,7 +19,7 @@ class PostController extends AbstractController
     {
         $posts = $postRepository->findAll();
 
-        return $this->render('admin/post/index.html.twig', [
+        return $this->render('admin3/post/index.html.twig', [
             'posts' => $posts,
         ]);
     }
@@ -39,10 +39,10 @@ class PostController extends AbstractController
             $em->persist($post);
             $em->flush();
             $this->addFlash('success', 'Article ajouté !');
-            return $this->redirectToRoute('admin_post_index');
+            return $this->redirectToRoute('admin3_post_index');
         }
         
-        return $this->render('admin/post/add.html.twig', [
+        return $this->render('admin3/post/add.html.twig', [
             'form' => $form->createView(),
             'title' => 'Ajout d\'un article',
         ]);    
@@ -58,10 +58,10 @@ class PostController extends AbstractController
             $em = $doctrine->getManager();
             $em->flush();
             $this->addFlash('success', 'Article modifié !');
-            return $this->redirectToRoute('admin_post_index');
+            return $this->redirectToRoute('admin3_post_index');
         }
         
-        return $this->render('admin/post/add.html.twig', [
+        return $this->render('admin3/post/add.html.twig', [
             'form' => $form->createView(),
             'title' => 'Modification d\'un article',
         ]);    
@@ -74,7 +74,7 @@ class PostController extends AbstractController
         $em->remove($post);
         $em->flush();
         $this->addFlash('success', 'Article supprimé !');
-        return $this->redirectToRoute('admin_post_index');
+        return $this->redirectToRoute('admin3_post_index');
     }
 
     #[Route('/activate/{id}', name: 'activate')]

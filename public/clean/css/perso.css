@@ -40,20 +40,16 @@ a {
     color: lightgrey;
 }
 
-.sidebar {
+aside .widget {
     background-color: lightgrey; 
-    border-radius: 30px; 
-    padding-top: 20px;
+    border-radius: 15px; 
+    padding: 20px;
     margin-bottom: 20px;  
-}
-
-.carousel {
-    margin-bottom: 30px;
 }
 
 .carousel img {
     width: 100%; 
     margin: auto;
-    padding: 20px;
+    padding: 10px;
     background-color: black;
 }
