@@ -53,6 +53,7 @@ class PostCrudController extends AbstractCrudController
             TextField::new('title'),
             AssociationField::new('category'),
             TextEditorField::new('content')->onlyOnForms()->setFormType(CKEditorType::class),
+            AssociationField::new('tags'),
             BooleanField::new('active')->hideWhenCreating(),
         ];
     }

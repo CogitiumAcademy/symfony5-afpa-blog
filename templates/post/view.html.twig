@@ -11,50 +11,47 @@
         <article class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7 post-preview post-content">
+                        <div class="post-preview post-content">
                     
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        Rédigé par {{ post.user.displayname }}
-                        - Publié {{ post.createdAt | ago }}
-                        - Classé dans {{ post.category.name }}
-                        {% if is_granted("ROLE_USER") and post.user.id == app.user.id %}
-                            <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
-                        {% endif %}
-                    </div>
+                            <!-- L'article complet avec la photo et les infos -->
+                            <p class="post-meta">
+                                Rédigé par <a href="">{{ post.user.displayname }}</a>
+                                - Publié {{ post.createdAt | ago }}
+                                - Classé dans <a href="">{{ post.category.name }}</a>
+                                {% if is_granted("ROLE_USER") and post.user.id == app.user.id %}
+                                    <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                                {% endif %}
+                            </p>
+                            <img class="pola" src="{{ app_cdn }}{{ post.image }}" alt="">
+                            {{ post.content | raw }}
 
-                    <div class="col-md-10 col-lg-8 col-xl-7 post-content">
-                        <img class="pola" src="{{ app_cdn }}{{ post.image }}" alt="">
-                        {{ post.content | raw }}
-                    </div>
+                            <!-- Les commentaires -->
+                            {% if(post.comments | length > 0) %}
+                                <h2>Les commentaires</h2>
+                                <ul class="list-group">
+                                    {% for comment in post.comments %}
+                                        <li class="list-group-item">
+                                            <b>{{ comment.createdAt | ago }}, {{ comment.user.displayname }} a écrit : </b>
+                                            {% if is_granted("ROLE_USER") and comment.user.id == app.user.id %}
+                                                <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                            {% endif %}
+                                            <br>
+                                            {{ comment.content }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>                            
+                            {% endif %}
 
-                    {# {{ dump(post.comments) }} #}
-
-                    {% if(post.comments) %}
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <h2>Les commentaires</h2>
-                        <ul class="list-group">
-                            {# {{ dump(app.user) }} #}
-                            {% for comment in post.comments %}
-                                {# {{ dump(comment) }} #}
-                                <li class="list-group-item">
-                                    <b>{{ comment.createdAt | ago }}, {{ comment.user.email }} a écrit : </b>
-                                    {% if is_granted("ROLE_USER") and comment.user.id == app.user.id %}
-                                        <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href=""><i class="fa-solid fa-trash-can"></i></a>
-                                    {% endif %}
-                                    <br>
-                                    {{ comment.content }}
-                                </li>
-                            {% endfor %}
-                        </ul>                            
-                    </div>
-                    {% endif %}
-
-                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                        <div class="col-md-10 col-lg-8 col-xl-7">
-                            <h2>Ajout d'un commentaire</h2>
-                            {{ form(form) }}
+                            <!-- Le formulaire de commentaire -->
+                            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                                <h2>Ajout d'un commentaire</h2>
+                                {{ form(form) }}
+                            {% endif %}
+                            
                         </div>
-                    {% endif %}
+                    </div>
                 </div>
             </div>
         </article>

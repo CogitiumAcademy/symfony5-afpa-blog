@@ -17,7 +17,8 @@ class CommentType extends AbstractType
             //->add('createdAt')
             //->add('content')
             ->add('content', TextareaType::class, [
-                "label" => "Mon commentaire :",
+                "label" => false,
+                'attr' => ['rows' => 4],
             ])
             //->add('post')
             //->add('user')

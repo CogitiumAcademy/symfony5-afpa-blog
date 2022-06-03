@@ -33,7 +33,6 @@ class CategoryController extends AbstractController
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //$em = $this->getDoctrine()->getManager();
             $em = $doctrine->getManager();
             $em->persist($category);
             $em->flush();
@@ -56,9 +55,7 @@ class CategoryController extends AbstractController
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //$em = $this->getDoctrine()->getManager();
             $em = $doctrine->getManager();
-            //$em->persist($category);
             $em->flush();
             $this->addFlash('success', 'Catégorie modifiée !');
             return $this->redirectToRoute('admin3_category_index');

@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Form\PostType;
 use App\Entity\Comment;
 use App\Form\CommentType;
+use App\Repository\TagRepository;
 use App\Repository\PostRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,21 +19,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function home(PostRepository $postRepository, CategoryRepository $categoryRepository): Response
+    public function home(PostRepository $postRepository, CategoryRepository $categoryRepository, TagRepository $tagRepository): Response
     {
-        //$posts = $postRepository->findAll();
         $posts = $postRepository->findLastPosts(10);
         $oldPosts = $postRepository->findOldPosts();
         $randomPhotos = $postRepository->findRandomPhotos();
         $categories = $categoryRepository->findBy(
             array(),
             ['name' => 'ASC']);
-
+        $tags = $tagRepository->findBy(
+            array(),
+            ['name' => 'ASC']);
+    
         return $this->render('post/home.html.twig', [
             'posts' => $posts,
             'oldPosts' => $oldPosts,
             'randomPhotos' => $randomPhotos,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 

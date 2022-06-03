@@ -25,6 +25,15 @@
                             {{ post.content  | u.truncate(200, '...')  | raw }}
 
                             <p class="post-meta">
+                                Tags : 
+                                {% for tag in post.tags %}
+                                    <a href="{{ path('app_tag', {slug: tag.slug}) }}" class="" aria-current="true">
+                                        #{{ tag.name }}
+                                    </a>
+                                {% endfor %}
+                            </p>
+
+                            <p class="post-meta">
                                 Rédigé par <a href="">{{ post.user.displayname }}</a>
                                 - Publié {{ post.createdAt | ago }}
                                 - Classé dans <a href="{{ path('app_category', {slug: post.category.slug}) }}">{{ post.category.name }}</a>
@@ -53,12 +62,13 @@
 
                                 {% set a = 0 %}
                                 {% for photo in randomPhotos %}
+                                    
                                     {% set a = a + 1 %}
                                     <div class="carousel-item {{ (a==1)?'active':'' }}">
                                         <a href="{{ path('post_view', {slug: photo.slug}) }}">
                                             <img src="{{ app_cdn }}{{ photo.image }}" class="d-block" alt="...">
                                         </a>
-                                        <div class="carousel-caption d-none d-md-block">
+                                        <div class="carousel-caption d-md-block">
                                             <h6>Photo #{{ a }}</h6>
                                         </div>
                                     </div>
@@ -81,6 +91,34 @@
                         </div>
                     </div>
 
+                    {# <!-- Liste des tagss -->
+                    <div class="widget">
+                        <h3>Tags</h3>
+                        <div class="list-group">
+                            {% for tag in tags %}
+                                <a href="{{ path('app_tag', {slug: tag.slug}) }}" class="list-group-item list-group-item-action" aria-current="true">
+                                    #{{ tag.name }} : {{ tag.posts | length }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div> #}
+
+                    <!-- Liste des tagss -->
+                    <!-- https://codepen.io/deadbead/pen/nzreda -->
+                    <div class="widget">
+                        <h3>Tags</h3>
+                        <div id="myCanvasContainer">
+                            <canvas id="myCanvas">
+                            <p>Anything in here will be replaced on browsers that support the canvas element</p>
+                            </canvas>
+                        </div>
+                        <div id="tags" style="font-size: 40%">
+                            {% for tag in tags %}
+                                <a href="{{ path('app_tag', {slug: tag.slug}) }}" style="font-size: {{ (tag.posts | length) * 2 }}ex">{{ tag.name }}</a>
+                            {% endfor %}
+                        </div>
+                      </div>
+
                     <!-- Liste des anciens articles -->
                     <div class="widget">
                         <h3>5 x Archives</h3>
@@ -98,4 +136,30 @@
 
             </div>
         </div>
+        <script src="https://releases.jquery.com/git/jquery-2.x-git.min.js"></script>
+        <script src="https://www.goat1000.com/jquery.tagcanvas.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                if(!$('#myCanvas').tagcanvas({
+                    //textColour: '#ff0000',
+                    outlineColour: '#ff00ff',
+                    reverse: true,
+                    depth: 0.8,
+                    maxSpeed: 0.05,
+                    textFont: null,
+                    textColour: null,
+                    weightMode:'both',
+                    weight: true,
+                    weightGradient: {
+                        0:    '#f00', // red
+                        //0.33: '#ff0', // yellow
+                        //0.66: '#0f0', // green
+                        1:    '#00f'  // blue
+                    }
+                },'tags')) {
+                    // something went wrong, hide the canvas container
+                    $('#myCanvasContainer').hide();
+                }
+            });
+        </script>
 {% endblock %}
