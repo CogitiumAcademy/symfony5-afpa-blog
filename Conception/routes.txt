@@ -1,0 +1,24 @@
+ ------------------------------ ---------- ------------------------------ ------------------------------------------ 
+  Name                           Method     Path                                 
+ ------------------------------ ---------- ------------------------------ ------------------------------------------
+  home                           ANY        /                              Page d'accueil      
+  post_view                      ANY        /post/{slug}                   Article détaillé      
+  app_category                   ANY        /category/{slug}               Liste filtrée par catégorie      
+  app_tag                        ANY        /tag/{slug}                    Liste filtrée par tag      
+
+  page_about                     ANY        /about                         Page à propos      
+  page_contact                   ANY        /contact                       Page contact      
+
+  app_register                   ANY        /register                      Page register      
+  app_verify_email               ANY        /verify/email                  Vérification en provenance d'email      
+
+  app_forgot_password_request    ANY        /reset-password                Formulaire de réinitialisation password      
+  app_check_email                ANY        /reset-password/check-email    Page de confirmation de demande      
+  app_reset_password             ANY        /reset-password/reset/{token}  Formulaire de reset en provenance d'email      
+
+  app_login                      ANY        /login                         Formulaire de login      
+  app_logout                     ANY        /logout                        Logout
+
+  post_add                       ANY        /post/add                      Formulaire de proposition d'article      
+ ------------------------------ ---------- ------------------------------ ------------------------------------------
+
