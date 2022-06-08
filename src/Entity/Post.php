@@ -52,6 +52,9 @@ class Post
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
     private $tags;
 
+    #[ORM\Column(type: 'float')]
+    private $price;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -218,6 +221,18 @@ class Post
     public function removeTag(tag $tag): self
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

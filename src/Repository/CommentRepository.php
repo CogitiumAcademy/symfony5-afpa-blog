@@ -71,4 +71,17 @@ class CommentRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findCommentsByCategory($cat, int $nb = 5): array
+    {
+       return $this->createQueryBuilder('c')
+            ->join('c.post', 'p')
+            ->andWhere('p.category = :val')
+            ->setMaxResults(30)
+            ->setParameter('val', $cat)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 }

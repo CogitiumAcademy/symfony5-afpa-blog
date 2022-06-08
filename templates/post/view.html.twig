@@ -26,6 +26,12 @@
                             <img class="pola" src="{{ app_cdn }}{{ post.image }}" alt="">
                             {{ post.content | raw }}
 
+                            <!-- Le prix -->
+                            <p class="post-meta">
+                                Tirage en vente : <span class="badge rounded-pill bg-light text-dark">{{ post.price }} €</span
+                            </p>
+
+                            <!-- Les tags -->
                             <p class="post-meta">
                                 Tags : 
                                 {% for tag in post.tags %}
@@ -35,6 +41,7 @@
                                 {% endfor %}
                             </p>
 
+                            <!-- Les infos -->
                             <p class="post-meta">
                                 Rédigé par <a href=""><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
                                 - Publié {{ post.createdAt | ago }}

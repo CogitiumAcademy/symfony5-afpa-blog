@@ -18,4 +18,19 @@ class CategoryController extends AbstractController
             'category' => $category,
         ]);
     }
+
+    #[Route('/categorytest/{slug}', name: 'test_category')]
+    public function index2(Category $category): Response
+    {
+        //dd($category->getPosts());
+        // $posts = $category->getPosts();
+        // foreach ($posts as $post) {
+        //     # code...
+        // }
+
+        return $this->render('category/test.html.twig', [
+            'posts' => $category,
+        ]);
+    }
+
 }
