@@ -19,6 +19,5 @@
   app_login                      ANY        /login                         Formulaire de login      
   app_logout                     ANY        /logout                        Logout
 
-  post_add                       ANY        /post/add                      Formulaire de proposition d'article      
  ------------------------------ ---------- ------------------------------ ------------------------------------------
 

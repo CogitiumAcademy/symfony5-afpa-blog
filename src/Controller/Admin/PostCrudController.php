@@ -7,8 +7,7 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -55,7 +54,8 @@ class PostCrudController extends AbstractCrudController
             AssociationField::new('category'),
             TextEditorField::new('content')->onlyOnForms()->setFormType(CKEditorType::class),
             AssociationField::new('tags'),
-            NumberField::new('price')->setNumDecimals(2),
+            // NumberField::new('price')->setNumDecimals(2),
+            MoneyField::new('price')->setStoredAsCents(false)->setCurrency('EUR'),
             BooleanField::new('active')->hideWhenCreating(),
         ];
     }
