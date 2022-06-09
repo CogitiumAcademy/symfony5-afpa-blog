@@ -14,9 +14,8 @@ class MailController extends AbstractController
     public function sendEmail(MailerInterface $mailer): Response
     {
         $email = (new Email())
-            ->from('phgiraud@cogitium.com')
-            ->to('cogitium@gmail.com')
-            //->cc('cc@example.com')
+            ->from('cogitium@gmail.com')
+            ->to('phgiraud@cogitium.com')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
