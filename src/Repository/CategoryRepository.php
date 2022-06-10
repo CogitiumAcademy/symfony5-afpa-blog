@@ -45,6 +45,23 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    public function findPostsByParentCategory($cat): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Post p
+            WHERE p.category IN 
+                (SELECT c 
+                FROM App\Entity\Category c
+                WHERE c.parent = :val)'
+        )
+        ->setParameter('val', $cat)
+        ;
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */

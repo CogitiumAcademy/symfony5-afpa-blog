@@ -47,6 +47,11 @@ class Category
         return $this->id . ' - ' . $this->name;
     }
 
+    public function myToString()
+    {
+        return 'My - ' . $this->name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

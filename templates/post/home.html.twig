@@ -83,10 +83,22 @@
                     <div class="widget">
                         <h3>Catégories</h3>
                         <div class="list-group">
-                            {% for category in categories %}
+                            {# {% for category in categories %}
                                 <a href="{{ path('app_category', {slug: category.slug}) }}" class="list-group-item list-group-item-action" aria-current="true">
                                     {{ category.name }}
                                 </a>
+                            {% endfor %} #}
+                            {% for category in categories %}
+                                {% if category.categories | length != 0 %}
+                                    <a href="{{ path('app_category', {slug: category.slug}) }}" class="list-group-item list-group-item-action" aria-current="true">{{ category.name }}</a>
+                                    {% for enfant in category.categories | sort((a, b) => a.name <=> b.name) %}
+                                        <a href="{{ path('app_category', {slug: category.slug}) }}" class="list-group-item list-group-item-action" aria-current="true" style="text-align: right">{{ enfant.name }}</a>
+                                    {% endfor %}
+                                {% else %}
+                                    {% if not category.parent %}
+                                        <a href="{{ path('app_category', {slug: category.slug}) }}" class="list-group-item list-group-item-action" aria-current="true">{{ category.name }}</a>
+                                    {% endif %}
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </div>
