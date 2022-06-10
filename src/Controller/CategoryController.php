@@ -13,12 +13,8 @@ class CategoryController extends AbstractController
     #[Route('/category/{slug}', name: 'app_category')]
     public function index(Category $category, CategoryRepository $categoryRepository): Response
     {
-        //dd($category->getPosts());
         if ($category->getParent() == null) {
-            //dd($category);
             $posts = $categoryRepository->findPostsByParentCategory($category);
-            //dd($posts);
-
         } else {
             $posts = $category->getPosts();
         }

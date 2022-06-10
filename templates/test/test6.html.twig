@@ -8,11 +8,9 @@
     <h1>Hello</h1>
 
         {% for category in categories %}
-            
             {% if category.categories | length != 0 %}
                 <h2>{{ category.name }}</h2>
                 {% for enfant in category.categories | sort((a, b) => a.name <=> b.name) %}
-
                     <h3>{{ enfant.name }}</h3>
                 {% endfor %}
             {% else %}
@@ -20,7 +18,6 @@
                     <h2>{{ category.name }}</h2>
                 {% endif %}
             {% endif %}
-            
         {% endfor %}
     
 </div>

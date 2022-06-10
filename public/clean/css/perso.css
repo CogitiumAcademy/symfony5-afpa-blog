@@ -28,7 +28,14 @@ a {
         padding: 20px;
     }
 }
-  
+
+.pola2 {
+    border: 2px solid grey; 
+    padding: 10px;
+    background-color: white;
+    width: 100%;
+}
+
 .post-content {
     color: white;
 }

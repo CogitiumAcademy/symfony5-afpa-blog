@@ -9,7 +9,7 @@
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="col-md-12 col-lg-10 col-xl-10">
 
                     <h2>Catégorie : {{ category.name }}</h2>
                     
@@ -17,14 +17,20 @@
                         <!-- Post preview-->
                         <div class="post-preview post-content">
                             <a href="{{ path('post_view', {slug: post.slug}) }}">
-                                <h2 class="post-title">{{ post.title }}</h2>
-                                <img src="{{ post.image }}" alt="">
-                                <h3 class="post-subtitle">{{ post.content  | u.truncate(150, '...')  | raw }}</h3>
+                                <h3 class="post-title">{{ post.title }}</h3>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img src="{{ app_cdn }}{{ post.image }}" alt="" class="pola2">
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="post-subtitle">{{ post.content  | u.truncate(150, '...')  | raw }}</div>
+                                    </div>
+                                </div>
                             </a>
                             <p class="post-meta">
-                                Rédigé par {{ post.user.email }}
+                                Rédigé par <a href=""><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
                                 - Publié {{ post.createdAt | ago }}
-                                - Classé dans {{ post.category.name }}
+                                - Classé dans <a href="{{ path('app_category', {slug: post.category.slug}) }}"><span class="badge rounded-pill bg-danger text-dark">{{ post.category.name }}</span></a>
                             </p>
                         </div>
                         <!-- Divider-->

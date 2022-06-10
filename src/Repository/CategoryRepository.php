@@ -55,7 +55,8 @@ class CategoryRepository extends ServiceEntityRepository
             WHERE p.category IN 
                 (SELECT c 
                 FROM App\Entity\Category c
-                WHERE c.parent = :val)'
+                WHERE c.parent = :val)
+            OR p.category = :val'
         )
         ->setParameter('val', $cat)
         ;
