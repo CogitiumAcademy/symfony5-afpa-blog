@@ -56,9 +56,9 @@
                                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_login') }}">Connexion <i class="fa-solid fa-right-to-bracket"></i></a>
                             </li>
                         {% else %}
-                            {# <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('post_add') }}">Publier <i class="fa-solid fa-file-pen"></i></a>
-                            </li> #}
+                            </li>
 
                             {% if is_granted("ROLE_ADMIN") %}
                                 <li class="nav-item">
@@ -75,8 +75,8 @@
                 </div>
             </div>
         </nav>
-        <!-- Page Header-->
 
+        <!-- Page Header-->
         {% block imageh %}
         <header class="masthead" style="background-image: url('{{ asset('clean/assets/img/lubitel3.jpg') }}'); background-position: bottom;">
         {% endblock %}

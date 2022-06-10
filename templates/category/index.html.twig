@@ -1,11 +1,12 @@
 {% extends 'clean.html.twig' %}
 
-{% block title %}Bienvenue sur mon blog{% endblock %}
+{% block title %}Photographies argentiques de {{ category.name }}{% endblock %}
 
-{% block subtitleh %}Toute l'actualité du surf{% endblock %}
+{% block subtitleh %}Photographies de {{ category.name }}{% endblock %}
 
 
 {% block body %}
+
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -14,6 +15,7 @@
                     <h2>Catégorie : {{ category.name }}</h2>
                     
                     {% for post in posts %}
+
                         <!-- Post preview-->
                         <div class="post-preview post-content">
                             <a href="{{ path('post_view', {slug: post.slug}) }}">
@@ -27,6 +29,8 @@
                                     </div>
                                 </div>
                             </a>
+
+                            <!-- Les infos -->
                             <p class="post-meta">
                                 Rédigé par <a href=""><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
                                 - Publié {{ post.createdAt | ago }}
@@ -43,4 +47,5 @@
                 </div>
             </div>
         </div>
+
 {% endblock %}
