@@ -4,15 +4,38 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Entity\Category;
+use Symfony\Component\Mime\Email;
 use App\Repository\PostRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TestController extends AbstractController
 {
+    #[Route('/email')]
+    public function sendEmail(MailerInterface $mailer): Response
+    {
+        $email = (new Email())
+            ->from('cogitium@gmail.com')
+            ->to('phgiraud@cogitium.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
+
+        return $this->render('page/contact.html.twig', [
+            'controller_name' => 'PageController',
+        ]);
+
+    }
+
     #[Route('/test', name: 'app_test')]
     public function index(PostRepository $postRepository): Response
     {

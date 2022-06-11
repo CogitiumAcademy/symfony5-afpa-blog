@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Tag;
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\PostType;
 use App\Entity\Comment;
+use App\Entity\Category;
 use App\Form\CommentType;
 use App\Repository\TagRepository;
 use App\Repository\PostRepository;
@@ -40,31 +43,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_USER')]
-    #[Route('/post/add', name: 'post_add')]
-    public function addPost(Request $request, ManagerRegistry $doctrine): Response
-    {
-        $post = new Post();
-        $form = $this->createForm(PostType::class, $post);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $post->setUser($this->getUser());
-            $post->setActive(false);
-
-            //$em = $this->getDoctrine()->getManager();
-            $em = $doctrine->getManager();
-            $em->persist($post);
-            $em->flush();
-            return $this->redirectToRoute('home');
-        }
-
-        return $this->render('post/add.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-    
-    #[Route('/post/{slug}', name: 'post_view')]
+    #[Route('/photo/{slug}', name: 'post_view')]
     public function post(Post $post, Request $request, ManagerRegistry $doctrine): Response
     {
         //dd($post->getComments());
@@ -100,4 +79,64 @@ class PostController extends AbstractController
         ]);
     }
 
+    #[Route('/categorie/{slug}', name: 'post_category')]
+    public function postsCatgory(Category $category, CategoryRepository $categoryRepository): Response
+    {
+        if ($category->getParent() == null) {
+            $posts = $categoryRepository->findPostsByParentCategory($category);
+        } else {
+            $posts = $category->getPosts();
+        }
+
+        return $this->render('post/filtre.html.twig', [
+            'filter' => 'Catégorie',
+            'filtervalue' => $category->getName(),
+            'posts' => $posts
+        ]);
+    }
+
+    #[Route('/tag/{slug}', name: 'post_tag')]
+    public function postsTag(Tag $tag): Response
+    {
+        return $this->render('post/filtre.html.twig', [
+            'filter' => 'Tag',
+            'filtervalue' => $tag->getName(),
+            'posts' => $tag->getPosts(),
+        ]);
+    }
+
+    #[Route('/photographe/{displayname}', name: 'post_photographer')]
+    public function postsPhotographer(User $user): Response
+    {
+        return $this->render('post/filtre.html.twig', [
+            'filter' => 'Photographe',
+            'filtervalue' => $user->getDisplayname(),
+            'posts' => $user->getPosts(),
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/post/add', name: 'post_add')]
+    public function addPost(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post->setUser($this->getUser());
+            $post->setActive(false);
+
+            //$em = $this->getDoctrine()->getManager();
+            $em = $doctrine->getManager();
+            $em->persist($post);
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('post/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    
 }

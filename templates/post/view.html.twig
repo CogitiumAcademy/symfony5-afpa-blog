@@ -39,7 +39,7 @@
                                 <p class="post-meta">
                                     Tags : 
                                     {% for tag in post.tags %}
-                                        <a href="{{ path('app_tag', {slug: tag.slug}) }}" class="" aria-current="true">
+                                        <a href="{{ path('post_tag', {slug: tag.slug}) }}" class="" aria-current="true">
                                             <span class="badge rounded-pill bg-warning text-dark">#{{ tag.name }}</span>
                                         </a>
                                     {% endfor %}
@@ -48,9 +48,9 @@
 
                             <!-- Les infos -->
                             <p class="post-meta">
-                                Rédigé par <a href=""><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
-                                - Publié {{ post.createdAt | ago }}
-                                - Classé dans <a href="{{ path('app_category', {slug: post.category.slug}) }}"><span class="badge rounded-pill bg-danger text-dark">{{ post.category.name }}</span></a>
+                                Photographie par <a href="{{ path('post_photographer', {displayname: post.user.displayName}) }}"><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
+                                - Publié <span class="badge rounded-pill bg-light text-dark">{{ post.createdAt | ago }}</span>
+                                - Classé dans <a href="{{ path('post_category', {slug: post.category.slug}) }}"><span class="badge rounded-pill bg-danger text-dark">{{ post.category.name }}</span></a>
                             </p>
 
                             <!-- Les commentaires -->

@@ -1,8 +1,8 @@
 {% extends 'clean.html.twig' %}
 
-{% block title %}Photographies argentiques de {{ category.name }}{% endblock %}
+{% block title %}Photographies argentiques : {{ filtervalue }}{% endblock %}
 
-{% block subtitleh %}Photographies de {{ category.name }}{% endblock %}
+{% block subtitleh %}Photographies argentiques : {{ filtervalue }}{% endblock %}
 
 
 {% block body %}
@@ -12,12 +12,13 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-12 col-lg-10 col-xl-10">
 
-                    <h2>Catégorie : {{ category.name }}</h2>
+                    <h2>{{ filter}} : {{ filtervalue }}</h2>
                     
                     {% for post in posts %}
 
                         <!-- Post preview-->
                         <div class="post-preview post-content">
+                        
                             <a href="{{ path('post_view', {slug: post.slug}) }}">
                                 <h3 class="post-title">{{ post.title }}</h3>
                                 <div class="row">
@@ -32,10 +33,11 @@
 
                             <!-- Les infos -->
                             <p class="post-meta">
-                                Rédigé par <a href=""><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
-                                - Publié {{ post.createdAt | ago }}
-                                - Classé dans <a href="{{ path('app_category', {slug: post.category.slug}) }}"><span class="badge rounded-pill bg-danger text-dark">{{ post.category.name }}</span></a>
+                                Photographie par <a href=""><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
+                                - Publié <span class="badge rounded-pill bg-light text-dark">{{ post.createdAt | ago }}</span>
+                                - Classé dans <a href="{{ path('post_category', {slug: post.category.slug}) }}"><span class="badge rounded-pill bg-danger text-dark">{{ post.category.name }}</span></a>
                             </p>
+
                         </div>
                         <!-- Divider-->
                         <hr class="my-4" />
