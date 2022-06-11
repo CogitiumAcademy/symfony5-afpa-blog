@@ -89,9 +89,9 @@
                         <div class="list-group">
                             {% for category in categories %}
                                 {% if category.categories | length != 0 %}
-                                    <a href="{{ path('post_category', {slug: category.slug}) }}" class="list-group-item list-group-item-action" aria-current="true">{{ category.name }}</a>
+                                    <a href="{{ path('post_category', {slug: category.slug}) }}" class="list-group-item list-group-item-action" aria-current="true"><b>{{ category.name }}</b></a>
                                     {% for enfant in category.categories | sort((a, b) => a.name <=> b.name) %}
-                                        <a href="{{ path('post_category', {slug: enfant.slug}) }}" class="list-group-item list-group-item-action" aria-current="true" style="text-align: right">{{ enfant.name }}</a>
+                                        <a href="{{ path('post_category', {slug: enfant.slug}) }}" class="list-group-item list-group-item-action" aria-current="true">&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-angles-right"></i> {{ enfant.name }}</a>
                                     {% endfor %}
                                 {% else %}
                                     {% if not category.parent %}
