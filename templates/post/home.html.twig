@@ -12,7 +12,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 
                 <!-- Main list -->
-                <div class="col-lg-8 col-md-8 col-xl-7">
+                <div class="col-lg-9 col-md-8 col-xl-7">
                     
                     {% for post in posts %}
                         <!-- Post preview-->
@@ -45,7 +45,6 @@
                         </div>
                         <!-- Divider-->
                         <hr class="my-4" />
-
                     {% endfor %}
 
                     <!-- Pager-->
@@ -56,7 +55,13 @@
                 </div>
 
                 <!-- Sidebar -->
-                <aside class="col-lg-3 col-md-4 mx-auto">
+                <aside class="col-lg-3 col-md-4 col-xl- 5 mx-auto">
+
+                    <!-- Recherche -->
+                    <div class="widget">
+                        <h3>Chercher</h3>
+                        {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+                    </div>
 
                     <!-- Carousel de photos aléatoires -->
                     <div class="widget">
