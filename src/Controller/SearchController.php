@@ -39,6 +39,7 @@ class SearchController extends AbstractController
     public function handleSearch(Request $request, PostRepository $pr): Response
     {
         $query = $request->request->get('form')['query'];
+        //dd(htmlentities($query, ENT_NOQUOTES, 'UTF-8'));
         $posts = $pr->findPostsBySearch($query);
 
         return $this->render('post/filtre.html.twig', [

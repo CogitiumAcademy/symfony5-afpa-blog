@@ -91,13 +91,33 @@ class PostRepository extends ServiceEntityRepository
 
     public function findPostsBySearch(string $query)
     {
-        return $this->createQueryBuilder('p')
-            ->andwhere('p.title like :query')
-            ->orwhere('p.content like :query')
+        $query2 = htmlentities($query, ENT_NOQUOTES, 'UTF-8');
+
+        $qb = $this->createQueryBuilder('p');
+        return $qb
+            ->andWhere($qb->expr()->andX(
+                "p.active = :active",
+                $qb->expr()->orX(
+                    "p.title LIKE :query",
+                    "p.content LIKE :query2"
+                )
+            ))
+            ->setParameter('active', true)
             ->setParameter('query', '%' . $query . '%')
+            ->setParameter('query2', '%' . $query2 . '%')
             ->getQuery()
             ->getResult()
         ;
+        // return $this->createQueryBuilder('p')
+        //     ->andWhere('p.active = :active')
+        //     ->andWhere('p.title like :query')
+        //     ->orWhere('p.content like :query2')
+        //     ->setParameter('active', true)
+        //     ->setParameter('query', '%' . $query . '%')
+        //     ->setParameter('query2', '%' . $query2 . '%')
+        //     ->getQuery()
+        //     ->getResult()
+        // ;
     }
 
     // /**
