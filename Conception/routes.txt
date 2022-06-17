@@ -6,7 +6,6 @@
   post_category                  ANY        /categorie/{slug}              Liste filtrée par catégorie      
   post_tag                       ANY        /tag/{slug}                    Liste filtrée par tag      
   post_photographer              ANY        /photographe/{displayname}     Liste filtrée par photographe   
-  post_photographer              ANY        /photographe/{displayname}     Liste filtrée par photographe   
   post_search                    ANY        /recherche                     Liste filtrée par formulaire de recherche
 
   page_about                     ANY        /about                         Page à propos      
@@ -18,6 +17,7 @@
   app_login                      ANY        /login                         Formulaire de login      
   app_logout                     ANY        /logout                        Logout
   app_profil                     ANY        /profil                        Mise à jour du profil
+  app_password                   ANY        /password                      Modification du mot de passe
   
   app_forgot_password_request    ANY        /reset-password                Formulaire de réinitialisation password      
   app_check_email                ANY        /reset-password/check-email    Page de confirmation de demande      
