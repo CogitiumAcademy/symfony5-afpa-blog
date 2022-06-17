@@ -95,13 +95,15 @@ class PostRepository extends ServiceEntityRepository
 
         $qb = $this->createQueryBuilder('p');
         return $qb
-            ->andWhere($qb->expr()->andX(
-                "p.active = :active",
-                $qb->expr()->orX(
-                    "p.title LIKE :query",
-                    "p.content LIKE :query2"
+            ->andWhere(
+                $qb->expr()->andX(
+                    "p.active = :active",
+                    $qb->expr()->orX(
+                        "p.title LIKE :query",
+                        "p.content LIKE :query2"
+                    )
                 )
-            ))
+            )
             ->setParameter('active', true)
             ->setParameter('query', '%' . $query . '%')
             ->setParameter('query2', '%' . $query2 . '%')

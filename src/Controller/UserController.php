@@ -26,7 +26,8 @@ class UserController extends AbstractController
 
             $em = $doctrine->getManager();
             $em->flush();
-            return $this->redirectToRoute('app_profil');
+            $this->addFlash('success', 'Modification enregistrée !');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('user/profil.html.twig', [

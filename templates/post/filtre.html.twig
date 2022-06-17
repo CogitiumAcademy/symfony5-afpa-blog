@@ -16,32 +16,34 @@
                     
                     {% for post in posts %}
 
-                        <!-- Post preview-->
-                        <div class="post-preview post-content">
+                        {% if post.active %}
+                            <!-- Post preview-->
+                            <div class="post-preview post-content">
 
-                            <a href="{{ path('post_view', {slug: post.slug}) }}">
-                                <h3 class="post-title">{{ post.title }}</h3>
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img src="{{ app_cdn }}{{ post.image }}" alt="" class="pola2">
+                                <a href="{{ path('post_view', {slug: post.slug}) }}">
+                                    <h3 class="post-title">{{ post.title }}</h3>
+                                    <div class="row">
+                                        <div class="col-sm-5 col-lg-3">
+                                            <img src="{{ app_cdn }}{{ post.image }}" alt="" class="pola2">
+                                        </div>
+                                        <div class="col-sm-7 col-lg-9">
+                                            <div class="post-subtitle">{{ post.content  | u.truncate(150, '...')  | raw }}</div>
+                                        </div>
                                     </div>
-                                    <div class="col-10">
-                                        <div class="post-subtitle">{{ post.content  | u.truncate(150, '...')  | raw }}</div>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
 
-                            <!-- Les infos -->
-                            <p class="post-meta">
-                                Photographie par <a href="{{ path('post_photographer', {displayname: post.user.displayName}) }}"><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
-                                - Publié <span class="badge rounded-pill bg-light text-dark">{{ post.createdAt | ago }}</span>
-                                - Classé dans <a href="{{ path('post_category', {slug: post.category.slug}) }}"><span class="badge rounded-pill bg-danger text-dark">{{ post.category.name }}</span></a>
-                            </p>
+                                <!-- Les infos -->
+                                <p class="post-meta">
+                                    Photographie par <a href="{{ path('post_photographer', {displayname: post.user.displayName}) }}"><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
+                                    - Publié <span class="badge rounded-pill bg-light text-dark">{{ post.createdAt | ago }}</span>
+                                    - Classé dans <a href="{{ path('post_category', {slug: post.category.slug}) }}"><span class="badge rounded-pill bg-danger text-dark">{{ post.category.name }}</span></a>
+                                </p>
 
-                        </div>
-                        
-                        <!-- Divider-->
-                        <hr class="my-4" />
+                            </div>
+                            
+                            <!-- Divider-->
+                            <hr class="my-4" />
+                        {% endif %}
 
                     {% endfor %}
 

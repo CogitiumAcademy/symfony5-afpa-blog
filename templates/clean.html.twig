@@ -49,27 +49,37 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('page_contact') }}">Contacter <i class="fa-solid fa-comment-dots"></i></a></li>
 
                         {% if not is_granted("ROLE_USER") %}
+
                             <li class="nav-item">
                                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_register') }}">S'inscrire <i class="fa-solid fa-address-card"></i></a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_login') }}">Connexion <i class="fa-solid fa-right-to-bracket"></i></a>
                             </li>
+
                         {% else %}
-                            <li class="nav-item">
+
+                            {# <li class="nav-item">
                                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('post_add') }}">Publier <i class="fa-solid fa-file-pen"></i></a>
-                            </li>
+                            </li> #}
 
                             {% if is_granted("ROLE_ADMIN") %}
+
                                 <li class="nav-item">
                                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('admin') }}" target="_blank">Admin <i class="fa-solid fa-chart-line"></i></a>
                                 </li>
+
                             {% endif %}
 
                             <li class="nav-item">
                                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_profil') }}">[{{ app.user.displayname }}]</a>
-                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket"></i></a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ path('app_logout') }}">Exit <i class="fa-solid fa-right-from-bracket"></i></a>
+                            </li>
+
                         {% endif %}
 
                     </ul>
