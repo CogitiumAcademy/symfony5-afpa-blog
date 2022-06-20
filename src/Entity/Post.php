@@ -55,6 +55,9 @@ class Post
     #[ORM\Column(type: 'float')]
     private $price;
 
+    #[ORM\Column(type: 'integer')]
+    private $views = 0;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -233,6 +236,18 @@ class Post
     public function setPrice(float $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(int $views): self
+    {
+        $this->views = $views;
 
         return $this;
     }

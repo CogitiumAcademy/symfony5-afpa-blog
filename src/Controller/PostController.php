@@ -46,7 +46,10 @@ class PostController extends AbstractController
     #[Route('/photo/{slug}', name: 'post_view')]
     public function post(Post $post, Request $request, ManagerRegistry $doctrine): Response
     {
-        //dd($post->getComments());
+        $em = $doctrine->getManager();
+
+        $post->setViews($post->getViews() + 1);
+        $em->flush();
 
         // Traitement du formulaire pour ajouter un commentaire
         $comment = new Comment();
@@ -62,7 +65,6 @@ class PostController extends AbstractController
             $comment->setPost($post);
 
             // Persister le commentaire
-            $em = $doctrine->getManager();
             $em->persist($comment);
             $em->flush();
 

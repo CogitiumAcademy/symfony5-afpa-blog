@@ -49,8 +49,9 @@
                             <!-- Les infos -->
                             <p class="post-meta">
                                 Photographie par <a href="{{ path('post_photographer', {displayname: post.user.displayName}) }}"><span class="badge rounded-pill bg-info text-dark">{{ post.user.displayname }}</span></a>
-                                - Publié <span class="badge rounded-pill bg-light text-dark">{{ post.createdAt | ago }}</span>
-                                - Classé dans <a href="{{ path('post_category', {slug: post.category.slug}) }}"><span class="badge rounded-pill bg-danger text-dark">{{ post.category.name }}</span></a>
+                                Publiée <span class="badge rounded-pill bg-light text-dark">{{ post.createdAt | ago }}</span>
+                                Classée dans <a href="{{ path('post_category', {slug: post.category.slug}) }}"><span class="badge rounded-pill bg-danger text-dark">{{ post.category.name }}</span></a>
+                                Vue <span class="badge rounded-pill bg-light text-dark">{{ post.views }} X</span>
                             </p>
 
                             <!-- Les commentaires -->
