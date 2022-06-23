@@ -110,16 +110,6 @@ class PostRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-        // return $this->createQueryBuilder('p')
-        //     ->andWhere('p.active = :active')
-        //     ->andWhere('p.title like :query')
-        //     ->orWhere('p.content like :query2')
-        //     ->setParameter('active', true)
-        //     ->setParameter('query', '%' . $query . '%')
-        //     ->setParameter('query2', '%' . $query2 . '%')
-        //     ->getQuery()
-        //     ->getResult()
-        // ;
     }
 
     // /**

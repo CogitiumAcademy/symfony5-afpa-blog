@@ -58,10 +58,14 @@ class Post
     #[ORM\Column(type: 'integer')]
     private $views = 0;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'likes')]
+    private $likedbyusers;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->likedbyusers = new ArrayCollection();
     }
 
     public function __toString()
@@ -248,6 +252,33 @@ class Post
     public function setViews(int $views): self
     {
         $this->views = $views;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikedbyusers(): Collection
+    {
+        return $this->likedbyusers;
+    }
+
+    public function addLikedbyuser(User $likedbyuser): self
+    {
+        if (!$this->likedbyusers->contains($likedbyuser)) {
+            $this->likedbyusers[] = $likedbyuser;
+            $likedbyuser->addLike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedbyuser(User $likedbyuser): self
+    {
+        if ($this->likedbyusers->removeElement($likedbyuser)) {
+            $likedbyuser->removeLike($this);
+        }
 
         return $this;
     }

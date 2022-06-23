@@ -51,6 +51,18 @@ class PostController extends AbstractController
         $post->setViews($post->getViews() + 1);
         $em->flush();
 
+        $isliked = false;
+        if ($this->getUser() != null) {
+            $likes = $post->getLikedbyusers();
+            foreach ($likes as $like) {
+                if ($like->getId() == $this->getUser()->getId()) {
+                    $isliked = true;
+                    //dump("true");
+                } 
+            }
+        }
+        //dd("stop");
+
         // Traitement du formulaire pour ajouter un commentaire
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -77,7 +89,10 @@ class PostController extends AbstractController
             'post' => $post,
 
             // Passer le formulaire à la vue
-            'form' => $form->createView()
+            'form' => $form->createView(),
+
+            // Like
+            'isliked' => $isliked
         ]);
     }
 
@@ -115,6 +130,15 @@ class PostController extends AbstractController
             'filtervalue' => $user->getDisplayname(),
             'posts' => $user->getPosts(),
         ]);
+    }
+
+    #[Route('/post/like/{id}', name: 'post_like')]
+    public function postLike(Post $post, ManagerRegistry $doctrine): Response
+    {
+        $post->addLikedbyuser($this->getUser());
+        $em = $doctrine->getManager();
+        $em->flush();
+        return new Response("true");
     }
 
     #[IsGranted('ROLE_USER')]

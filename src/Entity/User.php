@@ -43,10 +43,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 100)]
     private $displayname;
 
+    #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'likedbyusers')]
+    private $likes;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function __toString()
@@ -223,6 +227,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDisplayname(string $displayname): self
     {
         $this->displayname = $displayname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Post>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Post $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Post $like): self
+    {
+        $this->likes->removeElement($like);
 
         return $this;
     }

@@ -25,6 +25,16 @@
                             </p> #}
                             
                             <img class="pola" src="{{ app_cdn }}{{ post.image }}" alt="">
+                            
+                            {% if is_granted("ROLE_USER") %}
+                                {% if isliked %}
+                                    <a href="" id="like" data-id="{{ post.id }}" data-like="{{ isliked }}"><img src="{{ asset('clean/assets/img/liked.png') }}" alt="" width="50"></i></a>
+                                {% else %}
+                                    <a href="" id="like" data-id="{{ post.id }}" data-like="{{ isliked }}"><img src="{{ asset('clean/assets/img/unliked.png') }}" alt="" width="50"></i></a>
+                                {% endif %}
+
+                            {% endif %}
+
                             {{ post.content | raw }}
 
                             <!-- Le prix -->
@@ -83,4 +93,9 @@
                 </div>
             </div>
         </article>
+
+        {% block js_head %}
+        <script src="{{ asset('clean/js/like.js') }}"></script>
+        {% endblock %}
+
 {% endblock %}
