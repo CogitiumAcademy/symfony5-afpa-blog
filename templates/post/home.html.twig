@@ -4,7 +4,6 @@
 
 {% block subtitleh %}Photographie à l'ancienne{% endblock %}
 
-
 {% block body %}
 
         <!-- Main Content-->
@@ -17,11 +16,19 @@
                     {% for post in posts %}
                         <!-- Post preview-->
                         <div class="post-preview post-content">
+                            
+                            <!-- Le titre et la photo -->
                             <a href="{{ path('post_view', {slug: post.slug}) }}">
                                 <h2 class="post-title">{{ post.title }}</h2>
                                 <img class="pola" src="{{ app_cdn }}{{ post.image }}" alt="">
                             </a>
 
+                            <!-- Les likes -->
+                            <div>
+                                <i>{{ post.likedbyusers | length }} personne(s) aime(nt) cette photo</i>
+                            </div>
+
+                            <!-- Le contenu texte abrégé -->
                             {{ post.content  | u.truncate(200, '...')  | raw }}
 
                             <!-- Les tags -->

@@ -21,7 +21,7 @@ class CategoryCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('name'),
             AssociationField::new('parent'),
-            //TextEditorField::new('description'),
+            AssociationField::new('posts'),
         ];
     }
 }

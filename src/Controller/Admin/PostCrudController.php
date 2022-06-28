@@ -7,6 +7,7 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -45,8 +46,11 @@ class PostCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
+            BooleanField::new('active')->hideWhenCreating(),
             DateTimeField::new('created_at')->hideWhenCreating(),
-            TextField::new('image'),
+            TextField::new('image')->onlyOnForms(),
+            ImageField::new('image')->hideOnForm()
+                 ->setBasePath($_ENV["APP_CDN"]),
             // ImageField::new('image')
             //     ->setBasePath('uploads/posts')
             //     ->setUploadDir('public/uploads/posts')
@@ -55,10 +59,11 @@ class PostCrudController extends AbstractCrudController
             AssociationField::new('category'),
             TextEditorField::new('content')->onlyOnForms()->setFormType(CKEditorType::class),
             IntegerField::new('views'),
+            AssociationField::new('comments')->hideOnForm(),
             AssociationField::new('tags'),
+            AssociationField::new('likedbyusers'),
             // NumberField::new('price')->setNumDecimals(2),
             MoneyField::new('price')->setStoredAsCents(false)->setCurrency('EUR'),
-            BooleanField::new('active')->hideWhenCreating(),
         ];
     }
 }

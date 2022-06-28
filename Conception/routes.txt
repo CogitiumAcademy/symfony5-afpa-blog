@@ -21,7 +21,9 @@
   
   app_forgot_password_request    ANY        /reset-password                Formulaire de réinitialisation password      
   app_check_email                ANY        /reset-password/check-email    Page de confirmation de demande      
-  app_reset_password             ANY        /reset-password/reset/{token}  Formulaire de reset suite email      
+  app_reset_password             ANY        /reset-password/reset/{token}  Formulaire de reset suite email    
+
+  admin                          ANY        /admin                         Backoffice (EasyAdmin)  
 
  ------------------------------ ---------- ------------------------------ ------------------------------------------
 

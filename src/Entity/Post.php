@@ -46,7 +46,7 @@ class Post
     #[ORM\JoinColumn(nullable: false)]
     private $category;
 
-    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class)]
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: true)]
     private $comments;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
@@ -70,7 +70,8 @@ class Post
 
     public function __toString()
     {
-        return 'Article = ' . $this->id;
+        //return 'Article = ' . $this->id;
+        return $this->title;
     }
 
     public function getId(): ?int
