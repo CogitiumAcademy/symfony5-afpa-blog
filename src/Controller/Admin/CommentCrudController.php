@@ -42,7 +42,7 @@ class CommentCrudController extends AbstractCrudController
         return $actions
             // ...
             // this will forbid to create or delete entities in the backend
-            ->disable(Action::NEW, Action::EDIT)
+            ->disable(Action::NEW, Action::EDIT, Action::DETAIL)
         ;
     }
 }

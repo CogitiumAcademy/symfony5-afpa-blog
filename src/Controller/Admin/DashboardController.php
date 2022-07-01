@@ -24,7 +24,7 @@ class DashboardController extends AbstractDashboardController
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator->setController(PostCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(CommentCrudController::class)->generateUrl());
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -46,12 +46,19 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Category::class);
-        yield MenuItem::linkToCrud('Tags', 'fas fa-list', Tag::class);
-        yield MenuItem::linkToCrud('Articles', 'fas fa-list', Post::class);
+        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home')
+            ->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Category::class)
+            ->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('Tags', 'fas fa-list', Tag::class)
+            ->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('Articles', 'fas fa-list', Post::class)
+            ->setPermission('ROLE_ADMIN');
+
         yield MenuItem::linkToCrud('Commentaires', 'fas fa-list', Comment::class);
-        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
+        
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class)
+            ->setPermission('ROLE_ADMIN');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

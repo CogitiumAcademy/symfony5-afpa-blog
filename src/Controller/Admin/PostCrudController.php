@@ -35,6 +35,9 @@ class PostCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
+            ->setPageTitle('index', 'Les articles')
+            ->setPageTitle('edit', 'Modifier un article')
+            ->setPageTitle('new', 'Créer un article')
             ->setDefaultSort(['createdAt' => 'DESC'])
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
             //->renderContentMaximized()
@@ -46,24 +49,24 @@ class PostCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            BooleanField::new('active')->hideWhenCreating(),
-            DateTimeField::new('created_at')->hideWhenCreating(),
-            TextField::new('image')->onlyOnForms(),
-            ImageField::new('image')->hideOnForm()
+            BooleanField::new('active', 'Publié')->hideWhenCreating(),
+            DateTimeField::new('created_at', 'Créé le')->hideWhenCreating(),
+            TextField::new('image', 'Nom de la photo')->onlyOnForms(),
+            ImageField::new('image', 'Photo')->hideOnForm()
                  ->setBasePath($_ENV["APP_CDN"]),
             // ImageField::new('image')
             //     ->setBasePath('uploads/posts')
             //     ->setUploadDir('public/uploads/posts')
             //     ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]'),
-            TextField::new('title'),
-            AssociationField::new('category'),
-            TextEditorField::new('content')->onlyOnForms()->setFormType(CKEditorType::class),
-            IntegerField::new('views'),
-            AssociationField::new('comments')->hideOnForm(),
-            AssociationField::new('tags'),
-            AssociationField::new('likedbyusers'),
+            TextField::new('title','Titre'),
+            AssociationField::new('category', 'Catégorie'),
+            TextEditorField::new('content', 'Contenu')->onlyOnForms()->setFormType(CKEditorType::class),
+            IntegerField::new('views', 'Vues'),
+            AssociationField::new('comments', 'Commentaires')->hideOnForm(),
+            AssociationField::new('tags', 'Tags'),
+            AssociationField::new('likedbyusers', 'Likes'),
             // NumberField::new('price')->setNumDecimals(2),
-            MoneyField::new('price')->setStoredAsCents(false)->setCurrency('EUR'),
+            MoneyField::new('price', 'Prix')->setStoredAsCents(false)->setCurrency('EUR'),
         ];
     }
 }
