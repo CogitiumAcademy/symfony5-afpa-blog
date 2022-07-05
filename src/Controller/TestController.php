@@ -8,9 +8,12 @@ use Symfony\Component\Mime\Email;
 use App\Repository\PostRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TestController extends AbstractController
@@ -117,4 +120,28 @@ class TestController extends AbstractController
             'categories' => $categories,
         ]);
     }
+
+    #[Route('/test7', name: 'app_test7')]
+    public function index7(): Response
+    {
+
+        return $this->render('test/test7.html.twig', [
+            'categories' => '',
+        ]);
+    }
+
+    #[Route('/test8/{id}', name: 'app_test8')]
+    public function index8($id, Request $request, CsrfTokenManagerInterface $csrfTokenManager): Response
+    {
+        $token = new CsrfToken('delete', $request->query->get('_csrf_token'));
+
+        if (!$csrfTokenManager->isTokenValid($token)) {
+            throw $this->createAccessDeniedException('Token CSRF invalide');
+        }
+
+        return $this->render('test/test8.html.twig', [
+            'cid' => $id,
+        ]);
+    }
+
 }

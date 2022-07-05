@@ -161,7 +161,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail()) 
-            ->from(new Address('phgiraud@cogitium.com', $_ENV['APP_NAME']))
+            ->from(new Address('cogitium@gmail.com', $_ENV['APP_NAME']))
             ->to($user->getEmail())
             ->subject('Demande de réinitialisation de mot de passe')
             ->htmlTemplate('reset_password/email.html.twig')
