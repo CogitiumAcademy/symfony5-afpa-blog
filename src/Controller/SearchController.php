@@ -38,10 +38,9 @@ class SearchController extends AbstractController
     #[Route('/recherche', name: 'post_search')]
     public function handleSearch(Request $request, PostRepository $pr): Response
     {
-        //$query = $_POST['form']['query'];
         $query = $request->request->get('form')['query'];
+        //$query = $_POST['form']['query'];
         //dd(htmlentities($query, ENT_NOQUOTES, 'UTF-8'));
-
         //dump($_POST);
         //dd($query);
         

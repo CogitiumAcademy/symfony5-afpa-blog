@@ -25,6 +25,9 @@
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success" role="alert">{{ message }}</div>
             {% endfor %}
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% endfor %}
             <!-- Navbar Search-->
             <!--
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
